@@ -56,9 +56,16 @@ class RemiManager: ObservableObject {
     // MARK: - Public interface
 
     func prepareAudioSession() {
-        Task {
-            try? await activateAudioSession()
+        Task { [weak self] in
+            guard let self else { return }
+            try? await self.activateAudioSession()
             await MainActor.run { self.warmupRecordEngine() }
+            await MainActor.run { self.isLoading = true }
+            do {
+                let reply = try await self.fetchRemiLine(userInput: nil)
+                try await self.streamTTS(text: reply)
+            } catch {}
+            await MainActor.run { self.resetState() }
         }
     }
 
