@@ -9,7 +9,6 @@ private func loadCGImage(_ name: String) -> CGImage {
 
 struct ContentView: View {
     @StateObject private var remi = RemiManager()
-    @State private var recordPulse: CGFloat = 1.0
     @State private var breathScale: CGFloat = 1.0
 
     private let face = Image(decorative: loadCGImage("remi-face-dafult"), scale: 1)
@@ -34,7 +33,6 @@ struct ContentView: View {
                         .fill(remi.isRecording
                               ? Color.red.opacity(0.85)
                               : Color.black.opacity(0.75))
-                        .scaleEffect(remi.isRecording ? recordPulse : 1.0)
                     if remi.isLoading {
                         ProgressView().tint(.white)
                     } else if remi.isRecording {
@@ -51,15 +49,6 @@ struct ContentView: View {
             }
             .buttonStyle(.plain)
             .disabled(remi.isLoading || remi.isPlaying)
-            .onChange(of: remi.isRecording) { _, recording in
-                if recording {
-                    withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
-                        recordPulse = 1.12
-                    }
-                } else {
-                    withAnimation(.default) { recordPulse = 1.0 }
-                }
-            }
             .padding(.bottom, 6)
         }
         .onAppear {
