@@ -10,11 +10,12 @@ private final class CommitSignal: @unchecked Sendable {
 
 @MainActor
 class RemiManager: ObservableObject {
-    @Published var isRecording = false
-    @Published var isLoading  = false
-    @Published var isPlaying  = false
-    @Published var partialText: String?
-    @Published var currentLine: String?
+    @Published var isRecording    = false
+    @Published var isLoading      = false
+    @Published var isPlaying      = false
+    @Published var partialText:   String?
+    @Published var currentLine:   String?
+    @Published var mouthAmplitude: Float = 0.0
 
     private let xaiKey      = Secrets.xaiKey
     private let fishApiKey  = Secrets.fishApiKey
@@ -280,6 +281,20 @@ class RemiManager: ObservableObject {
         engine.connect(player, to: engine.mainMixerNode, format: format)
         try engine.start()
 
+        let tapFmt = engine.mainMixerNode.outputFormat(forBus: 0)
+        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: tapFmt) { [weak self] buf, _ in
+            guard let self, let ch = buf.floatChannelData else { return }
+            let n = Int(buf.frameLength)
+            var sum: Float = 0
+            for i in 0..<n { sum += ch[0][i] * ch[0][i] }
+            let rms = min(1.0, sqrt(sum / Float(max(n, 1))) * 8.0)
+            Task { @MainActor in
+                self.mouthAmplitude = rms > self.mouthAmplitude
+                    ? rms
+                    : self.mouthAmplitude * 0.7 + rms * 0.3
+            }
+        }
+
         await MainActor.run {
             self.audioEngine = engine
             self.playerNode  = player
@@ -355,13 +370,15 @@ class RemiManager: ObservableObject {
 
     @MainActor
     private func resetState() {
+        audioEngine?.mainMixerNode.removeTap(onBus: 0)
         audioEngine?.stop()
         audioEngine = nil
         playerNode?.stop()
         playerNode = nil
-        isRecording = false
-        isLoading   = false
-        isPlaying   = false
+        isRecording   = false
+        isLoading     = false
+        isPlaying     = false
+        mouthAmplitude = 0.0
     }
 
     // MARK: - LLM

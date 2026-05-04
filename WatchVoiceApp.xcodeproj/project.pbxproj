@@ -10,6 +10,7 @@
 		07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D32BB97991202B50C4982 /* handwear.png */; };
 		08022C82A5880BC53D0129DB /* remi-face.png in Resources */ = {isa = PBXBuildFile; fileRef = CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */; };
 		0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E585A367B9A959E23A39D /* RemiWidget.swift */; };
+		19901E0AAF59F08A96EFAA57 /* th_mouth_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 1719523564989DB8E65892FA /* th_mouth_open.png */; };
 		255ED6F1798A93F72F49D91B /* eyelash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA30800A37C24B70AEF3CED8 /* eyelash.png */; };
 		2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B7B078B0FBD7F5886A181 /* topwear.png */; };
 		31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 05533DDE87F8DAD5D0098F7C /* headwear.png */; };
@@ -32,6 +33,8 @@
 		DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */ = {isa = PBXBuildFile; fileRef = DF93582DF24D0CFFC38960DB /* ears.png */; };
 		DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */ = {isa = PBXBuildFile; fileRef = A82687B62B540E55D6FD3A5B /* nose.png */; };
 		E2318D5850BF6CD1064AAF21 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57054254CA622C5D5C0E35FC /* Secrets.swift */; };
+		E277C9E05749C8795BB49DED /* th_base.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F0F15CE4F472957F8B134B /* th_base.png */; };
+		ED03C563A328A2AE9DBD6588 /* th_eye_closed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */; };
 		F6C84A4B86F8169E3104823B /* front_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4126E4590BFD702387FE24 /* front_hair.png */; };
 		F96CD949D719155E0296706F /* WatchVoiceAppWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -63,6 +66,7 @@
 /* Begin PBXFileReference section */
 		05533DDE87F8DAD5D0098F7C /* headwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headwear.png; sourceTree = "<group>"; };
 		09496EF7170A02D0D751C98D /* eyewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyewhite.png; sourceTree = "<group>"; };
+		1719523564989DB8E65892FA /* th_mouth_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_mouth_open.png; sourceTree = "<group>"; };
 		297D32BB97991202B50C4982 /* handwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handwear.png; sourceTree = "<group>"; };
 		2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-3.png"; sourceTree = "<group>"; };
 		2C1E2623D6847130654FD3BC /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -80,9 +84,11 @@
 		79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyebrow.png; sourceTree = "<group>"; };
 		851E585A367B9A959E23A39D /* RemiWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiWidget.swift; sourceTree = "<group>"; };
 		9C4126E4590BFD702387FE24 /* front_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = front_hair.png; sourceTree = "<group>"; };
+		A5F0F15CE4F472957F8B134B /* th_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_base.png; sourceTree = "<group>"; };
 		A82687B62B540E55D6FD3A5B /* nose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nose.png; sourceTree = "<group>"; };
 		A92ABFD1798CBCC34632AD61 /* neck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neck.png; sourceTree = "<group>"; };
 		A9D02DEFB4C64AAE9F397231 /* legwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legwear.png; sourceTree = "<group>"; };
+		B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_eye_closed.png; sourceTree = "<group>"; };
 		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
 		CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face.png"; sourceTree = "<group>"; };
 		DA30800A37C24B70AEF3CED8 /* eyelash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyelash.png; sourceTree = "<group>"; };
@@ -90,7 +96,7 @@
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -101,14 +107,6 @@
 				6976D33966BFD61DADAC3D0A /* Sources */,
 			);
 			path = WatchVoiceApp;
-			sourceTree = "<group>";
-		};
-		508C15042FA8CE2300000804 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				"TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */ = {
@@ -146,7 +144,6 @@
 				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
 				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
 				78764B67BFC77E82BB50BFA7 /* Products */,
-				508C15042FA8CE2300000804 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,9 +178,20 @@
 				A82687B62B540E55D6FD3A5B /* nose.png */,
 				558A3237EFC86D3B33C7581B /* remi-face-dafult.png */,
 				CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */,
+				A5F0F15CE4F472957F8B134B /* th_base.png */,
+				B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */,
+				1719523564989DB8E65892FA /* th_mouth_open.png */,
 				5D0B7B078B0FBD7F5886A181 /* topwear.png */,
 			);
 			path = layers;
+			sourceTree = "<group>";
+		};
+		"TEMP_07995C5E-C994-438C-AC4D-8C71DF04601B" /* watch-front */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */,
+			);
+			path = "watch-front";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,9 +244,11 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					7E7E86451541FEF482B0FBE2 = {
+						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 					B635B4C25A8A337AC0E98929 = {
+						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -288,6 +298,9 @@
 				DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */,
 				366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */,
 				08022C82A5880BC53D0129DB /* remi-face.png in Resources */,
+				E277C9E05749C8795BB49DED /* th_base.png in Resources */,
+				ED03C563A328A2AE9DBD6588 /* th_eye_closed.png in Resources */,
+				19901E0AAF59F08A96EFAA57 /* th_mouth_open.png in Resources */,
 				2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -329,7 +342,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -346,7 +359,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -413,7 +426,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
@@ -427,7 +440,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -444,7 +457,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -504,7 +517,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;

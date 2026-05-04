@@ -10,46 +10,39 @@ private func loadBundleImage(_ name: String) -> Image? {
 
 struct ContentView: View {
     @StateObject private var remi = RemiManager()
-    @State private var breathScale: CGFloat = 1.0
     @State private var recordPulse: CGFloat = 1.0
+    @State private var eyeWeight: Double = 0.0
 
-    private let faceImage: Image =
-        loadBundleImage("remi-face-dafult") ?? Image(systemName: "person.fill")
-
-    private func startBreath() {
-        withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
-            breathScale = 1.03
-        }
-    }
-    private func stopBreath() {
-        withAnimation(.default) { breathScale = 1.0 }
-    }
+    private let baseImg      = loadBundleImage("th_base")
+    private let mouthOpenImg = loadBundleImage("th_mouth_open")
+    private let eyeClosedImg = loadBundleImage("th_eye_closed")
 
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.ignoresSafeArea()
 
-            faceImage
-                .resizable()
-                .scaledToFill()
-                .scaleEffect(breathScale)
-                .drawingGroup()
-                .ignoresSafeArea()
-                .onAppear {
-                    remi.prepareAudioSession()
-                    startBreath()
+            Canvas { ctx, size in
+                let rect = CGRect(origin: .zero, size: size)
+                if let img = baseImg      { ctx.draw(img, in: rect) }
+                if let img = mouthOpenImg, remi.mouthAmplitude > 0.02 {
+                    ctx.drawLayer { inner in
+                        inner.opacity = Double(min(1.0, remi.mouthAmplitude))
+                        inner.draw(img, in: rect)
+                    }
                 }
-                .onChange(of: remi.isPlaying) { _, playing in
-                    if playing { stopBreath() } else { startBreath() }
+                if let img = eyeClosedImg, eyeWeight > 0.01 {
+                    ctx.drawLayer { inner in
+                        inner.opacity = eyeWeight
+                        inner.draw(img, in: rect)
+                    }
                 }
-                .onChange(of: remi.isLoading) { _, loading in
-                    if loading { stopBreath() } else if !remi.isPlaying { startBreath() }
-                }
-                .onChange(of: remi.isRecording) { _, recording in
-                    if recording { stopBreath() } else if !remi.isLoading && !remi.isPlaying { startBreath() }
-                }
+            }
+            .ignoresSafeArea()
+            .onAppear {
+                remi.prepareAudioSession()
+                scheduleBlink()
+            }
 
-            // partial STT text during recording
             if let partial = remi.partialText {
                 Text(partial)
                     .font(.system(size: 9))
@@ -67,11 +60,8 @@ struct ContentView: View {
             }
 
             Button(action: {
-                if remi.isRecording {
-                    remi.commitRecording()
-                } else {
-                    remi.startRecording()
-                }
+                if remi.isRecording { remi.commitRecording() }
+                else { remi.startRecording() }
             }) {
                 ZStack {
                     Circle()
@@ -80,8 +70,7 @@ struct ContentView: View {
                               : Color.black.opacity(0.75))
                         .scaleEffect(remi.isRecording ? recordPulse : 1.0)
                     if remi.isLoading {
-                        ProgressView()
-                            .tint(.white)
+                        ProgressView().tint(.white)
                     } else if remi.isRecording {
                         Image(systemName: "xmark")
                             .font(.system(size: 20, weight: .medium))
@@ -111,6 +100,17 @@ struct ContentView: View {
             guard url.scheme == "watchvoiceapp" else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.remi.startRecording()
+            }
+        }
+    }
+
+    private func scheduleBlink() {
+        let delay = Double.random(in: 2.5...5.0)
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            withAnimation(.linear(duration: 0.08)) { eyeWeight = 1.0 }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.13) {
+                withAnimation(.linear(duration: 0.08)) { eyeWeight = 0.0 }
+                scheduleBlink()
             }
         }
     }
