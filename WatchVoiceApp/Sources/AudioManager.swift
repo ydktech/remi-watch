@@ -1,6 +1,13 @@
 import Foundation
 import AVFoundation
 
+private final class CommitSignal: @unchecked Sendable {
+    private var cont: CheckedContinuation<Void, Never>?
+    private var fired = false
+    func set(_ c: CheckedContinuation<Void, Never>) { cont = c }
+    func commit() { guard !fired else { return }; fired = true; cont?.resume(); cont = nil }
+}
+
 @MainActor
 class RemiManager: ObservableObject {
     @Published var isRecording = false
@@ -9,19 +16,16 @@ class RemiManager: ObservableObject {
     @Published var partialText: String?
     @Published var currentLine: String?
 
-    private let cerebrasKey   = Secrets.cerebrasKey
-    private let openRouterKey = Secrets.openRouterKey
-    private let xaiKey        = Secrets.xaiKey
-    private let fishApiKey    = Secrets.fishApiKey
-    private let fishVoiceId   = Secrets.fishVoiceId
-    private let elevenLabsKey = Secrets.elevenLabsKey
+    private let xaiKey      = Secrets.xaiKey
+    private let fishApiKey  = Secrets.fishApiKey
+    private let fishVoiceId = Secrets.fishVoiceId
 
-    private var audioEngine:  AVAudioEngine?
-    private var playerNode:   AVAudioPlayerNode?
-    private var recordEngine: AVAudioEngine?
-    private var wsTask:       URLSessionWebSocketTask?
-    private var sttTask:      Task<Void, Never>?
-    private var chatHistory:  [[String: String]] = []
+    private var audioEngine:   AVAudioEngine?
+    private var playerNode:    AVAudioPlayerNode?
+    private var recordEngine:  AVAudioEngine?
+    private var commitSignal:  CommitSignal?
+    private var sttTask:       Task<Void, Never>?
+    private var chatHistory:   [[String: String]] = []
 
     private let systemPrompt = """
     あなたはレミ、典型的なツンデレAIアシスタントです。ユーザーの話し相手です。
@@ -38,15 +42,14 @@ class RemiManager: ObservableObject {
     例：[embarrassed] べ、別にあんたのことが好きなわけじゃないし！[annoyed] もう、黙ってよね。
     """
 
-    // MARK: - Session setup (once, reused throughout)
+    // MARK: - Audio session
 
     private func activateAudioSession() async throws {
         let session = AVAudioSession.sharedInstance()
         try session.setCategory(.playAndRecord)
         try await withCheckedThrowingContinuation { (cont: CheckedContinuation<Void, Error>) in
             session.activate(options: []) { _, error in
-                if let e = error { cont.resume(throwing: e) }
-                else { cont.resume() }
+                if let e = error { cont.resume(throwing: e) } else { cont.resume() }
             }
         }
     }
@@ -87,30 +90,29 @@ class RemiManager: ObservableObject {
                 try await self.streamTTS(text: remiText)
                 print("⏱ TTS: \(String(format: "%.2f", Date().timeIntervalSince(t2)))s | total: \(String(format: "%.2f", Date().timeIntervalSince(t0)))s")
             } catch is CancellationError {
-                // user pressed cancel — silent exit
             } catch {
-                print("STS error: \(error)")
+                print("pipeline error: \(error)")
             }
             await MainActor.run { self.resetState() }
         }
     }
 
     func commitRecording() {
-        wsTask?.send(.string(#"{"type":"audio.done"}"#)) { _ in }
-        wsTask = nil
+        commitSignal?.commit()
+        commitSignal = nil
         stopMicEngine()
     }
 
     func cancelRecording() {
         sttTask?.cancel()
         sttTask = nil
-        wsTask?.cancel(with: .normalClosure, reason: nil)
-        wsTask = nil
+        commitSignal?.commit()
+        commitSignal = nil
         stopMicEngine()
         resetState()
     }
 
-    // MARK: - Grok Realtime STT
+    // MARK: - Grok REST STT
 
     nonisolated private func runSTTSession() async throws -> String? {
         try await activateAudioSession()
@@ -127,26 +129,19 @@ class RemiManager: ObservableObject {
             return (eng, conv, nativeFmt)
         }
 
-        var comps = URLComponents(string: "wss://api.x.ai/v1/stt")!
-        comps.queryItems = [
-            URLQueryItem(name: "sample_rate",     value: "16000"),
-            URLQueryItem(name: "encoding",        value: "pcm"),
-            URLQueryItem(name: "interim_results", value: "true"),
-            URLQueryItem(name: "language",        value: "ja"),
-            URLQueryItem(name: "endpointing",     value: "600"),
-        ]
-        var req = URLRequest(url: comps.url!)
-        req.setValue("Bearer \(xaiKey)", forHTTPHeaderField: "Authorization")
-        req.networkServiceType = .avStreaming
-        let ws = URLSession.shared.webSocketTask(with: req)
-        await MainActor.run { self.wsTask = ws }
-        ws.resume()
-
-        // Wait for server ready signal
-        _ = try await ws.receive()
+        let signal = CommitSignal()
+        await MainActor.run { self.commitSignal = signal }
 
         let targetFmt = AVAudioFormat(commonFormat: .pcmFormatFloat32,
                                       sampleRate: 16000, channels: 1, interleaved: false)!
+
+        final class Buf: @unchecked Sendable { var data = Data() }
+        let accumulated = Buf()
+
+        let silenceNeeded = max(10, Int(1.2 * tapFormat.sampleRate / 4096))
+        var silentBufs = 0
+        var speechStarted = false
+
         engine.inputNode.installTap(onBus: 0, bufferSize: 4096, format: tapFormat) { buf, _ in
             let outFrames = AVAudioFrameCount(Double(buf.frameLength) * 16000 / tapFormat.sampleRate)
             guard outFrames > 0,
@@ -155,59 +150,66 @@ class RemiManager: ObservableObject {
             converter.convert(to: out, error: &err) { _, status in
                 status.pointee = .haveData; return buf
             }
-            guard err == nil, let data = Self.toInt16Data(out) else { return }
-            ws.send(.data(data)) { _ in }
+            guard err == nil, let pcm = Self.toInt16Data(out) else { return }
+            accumulated.data.append(pcm)
+
+            if let ch = buf.floatChannelData {
+                let n = Int(buf.frameLength)
+                var sum: Float = 0
+                for i in 0..<n { sum += ch[0][i] * ch[0][i] }
+                let rms = sqrt(sum / Float(max(n, 1)))
+                if rms > 0.015 { speechStarted = true; silentBufs = 0 }
+                else if speechStarted { silentBufs += 1 }
+                if silentBufs >= silenceNeeded { signal.commit() }
+            }
         }
 
         try engine.start()
 
-        return try await withTaskCancellationHandler {
-            try await self.receiveUntilDone(ws: ws)
+        try await withTaskCancellationHandler {
+            await withCheckedContinuation { (cont: CheckedContinuation<Void, Never>) in
+                signal.set(cont)
+            }
         } onCancel: {
-            ws.cancel(with: .normalClosure, reason: nil)
+            signal.commit()
         }
+
+        try Task.checkCancellation()
+        await MainActor.run { self.stopMicEngine() }
+
+        guard accumulated.data.count > 3200 else { return nil }
+        return try await postGrokSTT(accumulated.data)
     }
 
-    nonisolated private func receiveUntilDone(ws: URLSessionWebSocketTask) async throws -> String? {
-        var lastText: String? = nil
-        while true {
-            let message: URLSessionWebSocketTask.Message
-            do {
-                message = try await ws.receive()
-            } catch {
-                if Task.isCancelled { throw CancellationError() }
-                await MainActor.run { self.stopMicEngine() }
-                return lastText
-            }
-            guard case .string(let raw) = message,
-                  let data = raw.data(using: .utf8),
-                  let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let type = json["type"] as? String else { continue }
+    nonisolated private func postGrokSTT(_ pcmData: Data) async throws -> String? {
+        let boundary = "B\(UUID().uuidString.replacingOccurrences(of: "-", with: ""))"
+        var req = URLRequest(url: URL(string: "https://api.x.ai/v1/stt")!)
+        req.httpMethod = "POST"
+        req.setValue("Bearer \(xaiKey)", forHTTPHeaderField: "Authorization")
+        req.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        req.timeoutInterval = 30
 
-            print("Grok STT [\(type)]: \(json["text"] ?? "")")
-
-            switch type {
-            case "transcript.partial":
-                let t = json["text"] as? String ?? ""
-                let speechFinal = json["speech_final"] as? Bool ?? false
-                if !t.isEmpty {
-                    lastText = t
-                    await MainActor.run { self.partialText = t }
-                }
-                if speechFinal {
-                    ws.send(.string(#"{"type":"audio.done"}"#)) { _ in }
-                    await MainActor.run { self.stopMicEngine() }
-                }
-            case "transcript.done":
-                let final = json["text"] as? String ?? ""
-                ws.cancel(with: .normalClosure, reason: nil)
-                await MainActor.run { self.stopMicEngine() }
-                return final.isEmpty ? lastText : final
-            case "error":
-                print("Grok STT error: \(json["message"] ?? "")")
-            default: break
-            }
+        var body = Data()
+        func append(_ s: String) { body.append(s.data(using: .utf8)!) }
+        func field(_ name: String, _ value: String) {
+            append("--\(boundary)\r\nContent-Disposition: form-data; name=\"\(name)\"\r\n\r\n\(value)\r\n")
         }
+        append("--\(boundary)\r\nContent-Disposition: form-data; name=\"file\"; filename=\"audio.pcm\"\r\nContent-Type: application/octet-stream\r\n\r\n")
+        body.append(pcmData)
+        append("\r\n")
+        field("audio_format", "pcm")
+        field("sample_rate", "16000")
+        field("language", "ja")
+        append("--\(boundary)--\r\n")
+        req.httpBody = body
+
+        let (data, resp) = try await URLSession.shared.data(for: req)
+        guard (resp as? HTTPURLResponse)?.statusCode == 200 else {
+            print("Grok STT error: \(String(data: data, encoding: .utf8) ?? "")")
+            throw URLError(.badServerResponse)
+        }
+        let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
+        return json?["text"] as? String
     }
 
     @MainActor
