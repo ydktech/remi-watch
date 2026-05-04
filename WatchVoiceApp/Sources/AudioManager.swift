@@ -13,6 +13,7 @@ class RemiManager: ObservableObject {
 
     private let cerebrasKey   = Secrets.cerebrasKey
     private let openRouterKey = Secrets.openRouterKey
+    private let xaiKey        = Secrets.xaiKey
     private let fishApiKey    = Secrets.fishApiKey
     private let fishVoiceId   = Secrets.fishVoiceId
     private let elevenLabsKey = Secrets.elevenLabsKey
@@ -383,12 +384,12 @@ class RemiManager: ObservableObject {
         messages.append(contentsOf: history)
         messages.append(["role": "user", "content": userMessage])
 
-        var req = URLRequest(url: URL(string: "https://openrouter.ai/api/v1/chat/completions")!)
+        var req = URLRequest(url: URL(string: "https://api.x.ai/v1/chat/completions")!)
         req.httpMethod = "POST"
-        req.setValue("Bearer \(openRouterKey)", forHTTPHeaderField: "Authorization")
+        req.setValue("Bearer \(xaiKey)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.httpBody = try JSONSerialization.data(withJSONObject: [
-            "model": "google/gemini-2.0-flash-001",
+            "model": "grok-3",
             "messages": messages,
             "max_tokens": 80,
             "temperature": 1.1
