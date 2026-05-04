@@ -115,8 +115,6 @@ class RemiManager: ObservableObject {
     // MARK: - ElevenLabs Realtime STT
 
     nonisolated private func runSTTSession() async throws -> String? {
-        // Activate session on MainActor, get format (do NOT start engine yet)
-        // Activate audio session (watchOS async API unlocks NECP WebSocket policy)
         try await activateAudioSession()
 
         let (engine, converter, tapFormat) = try await MainActor.run { [self] in
@@ -131,7 +129,6 @@ class RemiManager: ObservableObject {
             return (eng, conv, nativeFmt)
         }
 
-        // Open WebSocket
         var comps = URLComponents(string: "wss://api.elevenlabs.io/v1/speech-to-text/realtime")!
         comps.queryItems = [
             URLQueryItem(name: "model_id",        value: "scribe_v2_realtime"),
@@ -147,7 +144,6 @@ class RemiManager: ObservableObject {
         await MainActor.run { self.wsTask = ws }
         ws.resume()
 
-        // Gate: silence only counts after ElevenLabs confirms speech (partial_transcript)
         let gate = SpeechGate()
 
         let targetFmt = AVAudioFormat(commonFormat: .pcmFormatFloat32,
@@ -184,7 +180,6 @@ class RemiManager: ObservableObject {
 
         try engine.start()
 
-        // Receive loop
         return try await withTaskCancellationHandler {
             try await self.receiveUntilCommit(ws: ws, gate: gate)
         } onCancel: {
@@ -277,7 +272,6 @@ class RemiManager: ObservableObject {
         let player = AVAudioPlayerNode()
         engine.attach(player)
         engine.connect(player, to: engine.mainMixerNode, format: format)
-        // Session already active as playAndRecord — just start engine
         try engine.start()
 
         await MainActor.run {
