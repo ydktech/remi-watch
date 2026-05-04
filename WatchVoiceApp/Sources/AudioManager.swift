@@ -66,7 +66,7 @@ class RemiManager: ObservableObject {
         partialText = "..."
         currentLine = nil
 
-        sttTask = Task { [weak self] in
+        sttTask = Task(priority: .userInitiated) { [weak self] in
             guard let self else { return }
             do {
                 let t0 = Date()
@@ -115,8 +115,6 @@ class RemiManager: ObservableObject {
     // MARK: - Grok REST STT
 
     nonisolated private func runSTTSession() async throws -> String? {
-        try await activateAudioSession()
-
         let (engine, converter, tapFormat) = try await MainActor.run { [self] in
             let eng = AVAudioEngine()
             let nativeFmt = eng.inputNode.outputFormat(forBus: 0)
