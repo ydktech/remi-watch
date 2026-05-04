@@ -11,18 +11,49 @@ struct ContentView: View {
     @StateObject private var remi = RemiManager()
     @State private var breathScale: CGFloat = 1.0
 
-    private let face = Image(decorative: loadCGImage("remi-face-dafult"), scale: 1)
+    private let faceNeutral   = Image(decorative: loadCGImage("face_neutral"),   scale: 1)
+    private let faceHappy     = Image(decorative: loadCGImage("face_happy"),     scale: 1)
+    private let faceSad       = Image(decorative: loadCGImage("face_sad"),       scale: 1)
+    private let faceAngry     = Image(decorative: loadCGImage("face_angry"),     scale: 1)
+    private let faceSurprised = Image(decorative: loadCGImage("face_surprised"), scale: 1)
+    private let faceFearful   = Image(decorative: loadCGImage("face_fearful"),   scale: 1)
+    private let faceDisgust   = Image(decorative: loadCGImage("face_disgust"),   scale: 1)
+    private let faceShy       = Image(decorative: loadCGImage("face_shy"),       scale: 1)
+    private let faceConfident = Image(decorative: loadCGImage("face_confident"), scale: 1)
+
+    private var currentFace: Image {
+        switch remi.emotion {
+        case "happy":     return faceHappy
+        case "sad":       return faceSad
+        case "angry":     return faceAngry
+        case "surprised": return faceSurprised
+        case "fearful":   return faceFearful
+        case "disgust":   return faceDisgust
+        case "shy":       return faceShy
+        case "confident": return faceConfident
+        default:          return faceNeutral
+        }
+    }
 
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.ignoresSafeArea()
 
-            face
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .scaleEffect(breathScale)
-                .ignoresSafeArea()
+            ZStack {
+                faceNeutral  .resizable().scaledToFit().opacity(remi.emotion == "neutral"   ? 1 : 0)
+                faceHappy    .resizable().scaledToFit().opacity(remi.emotion == "happy"     ? 1 : 0)
+                faceSad      .resizable().scaledToFit().opacity(remi.emotion == "sad"       ? 1 : 0)
+                faceAngry    .resizable().scaledToFit().opacity(remi.emotion == "angry"     ? 1 : 0)
+                faceSurprised.resizable().scaledToFit().opacity(remi.emotion == "surprised" ? 1 : 0)
+                faceFearful  .resizable().scaledToFit().opacity(remi.emotion == "fearful"   ? 1 : 0)
+                faceDisgust  .resizable().scaledToFit().opacity(remi.emotion == "disgust"   ? 1 : 0)
+                faceShy      .resizable().scaledToFit().opacity(remi.emotion == "shy"       ? 1 : 0)
+                faceConfident.resizable().scaledToFit().opacity(remi.emotion == "confident" ? 1 : 0)
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .scaleEffect(breathScale)
+            .animation(.easeInOut(duration: 0.4), value: remi.emotion)
+            .ignoresSafeArea()
 
             Button(action: {
                 if remi.isRecording { remi.commitRecording() }

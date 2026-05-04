@@ -13,6 +13,7 @@ class RemiManager: ObservableObject {
     @Published var isRecording = false
     @Published var isLoading   = false
     @Published var isPlaying   = false
+    @Published var emotion     = "neutral"
 
     private let xaiKey      = Secrets.xaiKey
     private let fishApiKey  = Secrets.fishApiKey
@@ -409,11 +410,27 @@ class RemiManager: ObservableObject {
         let reply = (content ?? "[annoyed] もう。[sighing] しょうがないわね。")
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
+        let emo = Self.parseEmotion(reply)
         await MainActor.run {
+            self.emotion = emo
             chatHistory.append(["role": "user",      "content": userMessage])
             chatHistory.append(["role": "assistant",  "content": reply])
             if chatHistory.count > 12 { chatHistory.removeFirst(2) }
         }
         return reply
+    }
+
+    nonisolated private static func parseEmotion(_ text: String) -> String {
+        guard let open  = text.firstIndex(of: "["),
+              let close = text[text.index(after: open)...].firstIndex(of: "]") else { return "neutral" }
+        switch String(text[text.index(after: open)..<close]) {
+        case "happy", "excited", "laughing":  return "happy"
+        case "sad", "sighing":                return "sad"
+        case "angry", "annoyed":              return "angry"
+        case "sarcastic":                     return "disgust"
+        case "confident":                     return "confident"
+        case "embarrassed":                   return "shy"
+        default:                              return "neutral"
+        }
     }
 }
