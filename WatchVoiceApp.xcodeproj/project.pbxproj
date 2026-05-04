@@ -8,48 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		004BBF8B0A088CAB3A7315CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */; };
-		07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D32BB97991202B50C4982 /* handwear.png */; };
-		08022C82A5880BC53D0129DB /* remi-face.png in Resources */ = {isa = PBXBuildFile; fileRef = CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */; };
 		0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E585A367B9A959E23A39D /* RemiWidget.swift */; };
-		19901E0AAF59F08A96EFAA57 /* th_mouth_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 1719523564989DB8E65892FA /* th_mouth_open.png */; };
-		255ED6F1798A93F72F49D91B /* eyelash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA30800A37C24B70AEF3CED8 /* eyelash.png */; };
 		2CE0F8751335F6AC25982854 /* hud-state.json in Resources */ = {isa = PBXBuildFile; fileRef = CE187CF5F7D7E115F20BD3E5 /* hud-state.json */; };
-		2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B7B078B0FBD7F5886A181 /* topwear.png */; };
-		31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 05533DDE87F8DAD5D0098F7C /* headwear.png */; };
-		366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */ = {isa = PBXBuildFile; fileRef = 558A3237EFC86D3B33C7581B /* remi-face-dafult.png */; };
-		49576BF2F098E364F25C71DC /* image-face-talk.png in Resources */ = {isa = PBXBuildFile; fileRef = FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */; };
 		49BA93DDCA31E1F78867F2F8 /* face_disgust.png in Resources */ = {isa = PBXBuildFile; fileRef = AC78C6A6EEFB0FF5827A19A5 /* face_disgust.png */; };
-		4FF7842B99C3AD1B648644F7 /* footwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 67931560E10D4BC9CC190A64 /* footwear.png */; };
 		5C735F4A24BBEF7564022CB4 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2623D6847130654FD3BC /* AudioManager.swift */; };
-		613BB6080DB9C7681A3A9AA9 /* -0 in Resources */ = {isa = PBXBuildFile; fileRef = B468CDD03C0905399B356593 /* -0 */; };
 		73C7E4AE1008248679C78685 /* face_angry.png in Resources */ = {isa = PBXBuildFile; fileRef = 0D6A7C662C321D79DE810EB3 /* face_angry.png */; };
 		73E4D89BFB21031DD70BC6B9 /* face_neutral.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE6437DA28AC7190BFF3D00 /* face_neutral.png */; };
 		7699230E4BA50C7222FBE404 /* face_happy.png in Resources */ = {isa = PBXBuildFile; fileRef = 765D5D6C274AEB0F21EFDFCC /* face_happy.png */; };
-		89D720EFEA66F2C751E1E508 /* image-face-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */; };
-		9B73A5A44347E7F89F24AB0C /* emotion-face.png in Resources */ = {isa = PBXBuildFile; fileRef = F8E861E71BBF45957746B77A /* emotion-face.png */; };
-		9DD55DFB46FB0384C3C2CFA1 /* eyebrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */; };
-		9FA71814B5E2EFAD45223021 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F130D892E9D5A2D25864C89 /* mouth.png */; };
-		A338A21F889E2AA2C49D9605 /* bottomwear.png in Resources */ = {isa = PBXBuildFile; fileRef = CCDA443580EC2556457EBA35 /* bottomwear.png */; };
 		A645C7F4A88C7FE4D8F58383 /* face_fearful.png in Resources */ = {isa = PBXBuildFile; fileRef = 21B50F56BC62F62992618D0C /* face_fearful.png */; };
 		A87B2093DF8E1C417A9BFFC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F23099D16CB8E260FC0326 /* ContentView.swift */; };
 		AF377BC7E4E8B79314F767C6 /* face_surprised.png in Resources */ = {isa = PBXBuildFile; fileRef = 7A6BCC1560AC793905DB55EA /* face_surprised.png */; };
-		AF595837D0A013688CAB37D9 /* legwear.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D02DEFB4C64AAE9F397231 /* legwear.png */; };
 		B561017136B0D6D641F7A6BB /* face_shy.png in Resources */ = {isa = PBXBuildFile; fileRef = 6676684E06EF5EC5F30168D0 /* face_shy.png */; };
 		C149EBAFB7AA340AA88BA441 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAAD68A147476AB8538990A /* WatchApp.swift */; };
-		C3431EC7EAC47927017F4EC6 /* eyewhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 09496EF7170A02D0D751C98D /* eyewhite.png */; };
-		C3F910A3C09A6DC550581277 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CCFAFF88D6ABC0C5532A0E7 /* face.png */; };
-		CCDD4BF1DEA36C5E29D4D653 /* neck.png in Resources */ = {isa = PBXBuildFile; fileRef = A92ABFD1798CBCC34632AD61 /* neck.png */; };
-		CD3FF7DE667CE19D992A3A62 /* back_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A76749F6692665E52FB96D /* back_hair.png */; };
 		CE7051FD2FB8ED3FF1D167C5 /* face_confident.png in Resources */ = {isa = PBXBuildFile; fileRef = F70A01F77444A65B5987A38D /* face_confident.png */; };
-		D08BED8C2268000EC6DD96E0 /* irides.png in Resources */ = {isa = PBXBuildFile; fileRef = 64ECB995735AF38754B60C08 /* irides.png */; };
-		DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */ = {isa = PBXBuildFile; fileRef = DF93582DF24D0CFFC38960DB /* ears.png */; };
-		DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */ = {isa = PBXBuildFile; fileRef = A82687B62B540E55D6FD3A5B /* nose.png */; };
 		DF3791EEFDA416441D62550F /* emotion.png in Resources */ = {isa = PBXBuildFile; fileRef = 565AD0E9A3DDC9CCAEC6B92A /* emotion.png */; };
 		E2318D5850BF6CD1064AAF21 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57054254CA622C5D5C0E35FC /* Secrets.swift */; };
-		E277C9E05749C8795BB49DED /* th_base.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F0F15CE4F472957F8B134B /* th_base.png */; };
-		ED03C563A328A2AE9DBD6588 /* th_eye_closed.png in Resources */ = {isa = PBXBuildFile; fileRef = B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */; };
 		EE328900E35CE97160146A88 /* face_sad.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A3A5908FA7D05438D724019 /* face_sad.png */; };
-		F6C84A4B86F8169E3104823B /* front_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4126E4590BFD702387FE24 /* front_hair.png */; };
 		F96CD949D719155E0296706F /* WatchVoiceAppWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -78,53 +52,27 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		05533DDE87F8DAD5D0098F7C /* headwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headwear.png; sourceTree = "<group>"; };
-		09496EF7170A02D0D751C98D /* eyewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyewhite.png; sourceTree = "<group>"; };
 		0D6A7C662C321D79DE810EB3 /* face_angry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_angry.png; sourceTree = "<group>"; };
-		1719523564989DB8E65892FA /* th_mouth_open.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_mouth_open.png; sourceTree = "<group>"; };
 		21B50F56BC62F62992618D0C /* face_fearful.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_fearful.png; sourceTree = "<group>"; };
-		297D32BB97991202B50C4982 /* handwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handwear.png; sourceTree = "<group>"; };
-		2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-3.png"; sourceTree = "<group>"; };
 		2C1E2623D6847130654FD3BC /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		48F23099D16CB8E260FC0326 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		4F130D892E9D5A2D25864C89 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
-		53A76749F6692665E52FB96D /* back_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_hair.png; sourceTree = "<group>"; };
-		558A3237EFC86D3B33C7581B /* remi-face-dafult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face-dafult.png"; sourceTree = "<group>"; };
 		565AD0E9A3DDC9CCAEC6B92A /* emotion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emotion.png; sourceTree = "<group>"; };
 		57054254CA622C5D5C0E35FC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		5CCFAFF88D6ABC0C5532A0E7 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
-		5D0B7B078B0FBD7F5886A181 /* topwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topwear.png; sourceTree = "<group>"; };
 		5EE6437DA28AC7190BFF3D00 /* face_neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_neutral.png; sourceTree = "<group>"; };
-		64ECB995735AF38754B60C08 /* irides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irides.png; sourceTree = "<group>"; };
 		6676684E06EF5EC5F30168D0 /* face_shy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_shy.png; sourceTree = "<group>"; };
-		67931560E10D4BC9CC190A64 /* footwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footwear.png; sourceTree = "<group>"; };
 		6AE184F0E816A5A7328059C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6CAAD68A147476AB8538990A /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
 		765D5D6C274AEB0F21EFDFCC /* face_happy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_happy.png; sourceTree = "<group>"; };
-		79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyebrow.png; sourceTree = "<group>"; };
 		7A6BCC1560AC793905DB55EA /* face_surprised.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_surprised.png; sourceTree = "<group>"; };
 		851E585A367B9A959E23A39D /* RemiWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiWidget.swift; sourceTree = "<group>"; };
 		8A3A5908FA7D05438D724019 /* face_sad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_sad.png; sourceTree = "<group>"; };
-		9C4126E4590BFD702387FE24 /* front_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = front_hair.png; sourceTree = "<group>"; };
-		A5F0F15CE4F472957F8B134B /* th_base.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_base.png; sourceTree = "<group>"; };
-		A82687B62B540E55D6FD3A5B /* nose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nose.png; sourceTree = "<group>"; };
-		A92ABFD1798CBCC34632AD61 /* neck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neck.png; sourceTree = "<group>"; };
-		A9D02DEFB4C64AAE9F397231 /* legwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legwear.png; sourceTree = "<group>"; };
 		AC78C6A6EEFB0FF5827A19A5 /* face_disgust.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_disgust.png; sourceTree = "<group>"; };
-		B468CDD03C0905399B356593 /* -0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "-0"; sourceTree = "<group>"; };
-		B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_eye_closed.png; sourceTree = "<group>"; };
 		B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
-		CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face.png"; sourceTree = "<group>"; };
 		CE187CF5F7D7E115F20BD3E5 /* hud-state.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-state.json"; sourceTree = "<group>"; };
-		DA30800A37C24B70AEF3CED8 /* eyelash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyelash.png; sourceTree = "<group>"; };
 		DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatchVoiceAppWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		F70A01F77444A65B5987A38D /* face_confident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_confident.png; sourceTree = "<group>"; };
-		F8E861E71BBF45957746B77A /* emotion-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emotion-face.png"; sourceTree = "<group>"; };
-		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_05EAB6F2-2ABA-4D22-980B-CBD695ACAEDD" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -135,14 +83,6 @@
 				6976D33966BFD61DADAC3D0A /* Sources */,
 			);
 			path = WatchVoiceApp;
-			sourceTree = "<group>";
-		};
-		50A6EC722FA906F7009A45E4 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */ = {
@@ -188,7 +128,6 @@
 				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
 				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
 				78764B67BFC77E82BB50BFA7 /* Products */,
-				50A6EC722FA906F7009A45E4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -204,15 +143,7 @@
 		E41EDD2EAB0D9C0FEDF93738 /* layers */ = {
 			isa = PBXGroup;
 			children = (
-				B468CDD03C0905399B356593 /* -0 */,
-				53A76749F6692665E52FB96D /* back_hair.png */,
-				CCDA443580EC2556457EBA35 /* bottomwear.png */,
-				DF93582DF24D0CFFC38960DB /* ears.png */,
-				F8E861E71BBF45957746B77A /* emotion-face.png */,
 				565AD0E9A3DDC9CCAEC6B92A /* emotion.png */,
-				79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */,
-				DA30800A37C24B70AEF3CED8 /* eyelash.png */,
-				09496EF7170A02D0D751C98D /* eyewhite.png */,
 				0D6A7C662C321D79DE810EB3 /* face_angry.png */,
 				F70A01F77444A65B5987A38D /* face_confident.png */,
 				AC78C6A6EEFB0FF5827A19A5 /* face_disgust.png */,
@@ -222,24 +153,6 @@
 				8A3A5908FA7D05438D724019 /* face_sad.png */,
 				6676684E06EF5EC5F30168D0 /* face_shy.png */,
 				7A6BCC1560AC793905DB55EA /* face_surprised.png */,
-				5CCFAFF88D6ABC0C5532A0E7 /* face.png */,
-				67931560E10D4BC9CC190A64 /* footwear.png */,
-				9C4126E4590BFD702387FE24 /* front_hair.png */,
-				297D32BB97991202B50C4982 /* handwear.png */,
-				05533DDE87F8DAD5D0098F7C /* headwear.png */,
-				2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */,
-				FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */,
-				64ECB995735AF38754B60C08 /* irides.png */,
-				A9D02DEFB4C64AAE9F397231 /* legwear.png */,
-				4F130D892E9D5A2D25864C89 /* mouth.png */,
-				A92ABFD1798CBCC34632AD61 /* neck.png */,
-				A82687B62B540E55D6FD3A5B /* nose.png */,
-				558A3237EFC86D3B33C7581B /* remi-face-dafult.png */,
-				CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */,
-				A5F0F15CE4F472957F8B134B /* th_base.png */,
-				B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */,
-				1719523564989DB8E65892FA /* th_mouth_open.png */,
-				5D0B7B078B0FBD7F5886A181 /* topwear.png */,
 				9FB5A8F2E114C5E01548B9A8 /* .omc */,
 			);
 			path = layers;
@@ -251,6 +164,14 @@
 				CE187CF5F7D7E115F20BD3E5 /* hud-state.json */,
 			);
 			path = state;
+			sourceTree = "<group>";
+		};
+		"TEMP_4981C39D-8794-4A07-BEF4-F0E6AB6FB718" /* watch-front */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_05EAB6F2-2ABA-4D22-980B-CBD695ACAEDD" /* signing.xcconfig */,
+			);
+			path = "watch-front";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -303,9 +224,11 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					7E7E86451541FEF482B0FBE2 = {
+						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 					B635B4C25A8A337AC0E98929 = {
+						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -335,17 +258,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				613BB6080DB9C7681A3A9AA9 /* -0 in Resources */,
 				004BBF8B0A088CAB3A7315CF /* Assets.xcassets in Resources */,
-				CD3FF7DE667CE19D992A3A62 /* back_hair.png in Resources */,
-				A338A21F889E2AA2C49D9605 /* bottomwear.png in Resources */,
-				DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */,
-				9B73A5A44347E7F89F24AB0C /* emotion-face.png in Resources */,
 				DF3791EEFDA416441D62550F /* emotion.png in Resources */,
-				9DD55DFB46FB0384C3C2CFA1 /* eyebrow.png in Resources */,
-				255ED6F1798A93F72F49D91B /* eyelash.png in Resources */,
-				C3431EC7EAC47927017F4EC6 /* eyewhite.png in Resources */,
-				C3F910A3C09A6DC550581277 /* face.png in Resources */,
 				73C7E4AE1008248679C78685 /* face_angry.png in Resources */,
 				CE7051FD2FB8ED3FF1D167C5 /* face_confident.png in Resources */,
 				49BA93DDCA31E1F78867F2F8 /* face_disgust.png in Resources */,
@@ -355,24 +269,7 @@
 				EE328900E35CE97160146A88 /* face_sad.png in Resources */,
 				B561017136B0D6D641F7A6BB /* face_shy.png in Resources */,
 				AF377BC7E4E8B79314F767C6 /* face_surprised.png in Resources */,
-				4FF7842B99C3AD1B648644F7 /* footwear.png in Resources */,
-				F6C84A4B86F8169E3104823B /* front_hair.png in Resources */,
-				07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */,
-				31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */,
 				2CE0F8751335F6AC25982854 /* hud-state.json in Resources */,
-				89D720EFEA66F2C751E1E508 /* image-face-3.png in Resources */,
-				49576BF2F098E364F25C71DC /* image-face-talk.png in Resources */,
-				D08BED8C2268000EC6DD96E0 /* irides.png in Resources */,
-				AF595837D0A013688CAB37D9 /* legwear.png in Resources */,
-				9FA71814B5E2EFAD45223021 /* mouth.png in Resources */,
-				CCDD4BF1DEA36C5E29D4D653 /* neck.png in Resources */,
-				DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */,
-				366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */,
-				08022C82A5880BC53D0129DB /* remi-face.png in Resources */,
-				E277C9E05749C8795BB49DED /* th_base.png in Resources */,
-				ED03C563A328A2AE9DBD6588 /* th_eye_closed.png in Resources */,
-				19901E0AAF59F08A96EFAA57 /* th_mouth_open.png in Resources */,
-				2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,7 +310,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -430,7 +327,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_05EAB6F2-2ABA-4D22-980B-CBD695ACAEDD" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -497,7 +394,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
@@ -511,7 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -528,7 +425,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_05EAB6F2-2ABA-4D22-980B-CBD695ACAEDD" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -588,7 +485,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				DEVELOPMENT_TEAM = 4QTBUHSXM9;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
