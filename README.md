@@ -7,7 +7,7 @@ A watchOS 10 voice companion app featuring Remi, a tsundere anime AI. Tap to tal
 </p>
 
 <p align="center">
-  <a href="https://github.com/ydktech/remi-watch/releases/download/v0.1/demo.mov">▶ Demo video</a>
+  <a href="https://github.com/ydktech/remi-watch/releases/download/v0.1/demo.mp4">▶ Demo video</a>
 </p>
 
 ---
