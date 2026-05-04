@@ -124,7 +124,7 @@
 		F70A01F77444A65B5987A38D /* face_confident.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_confident.png; sourceTree = "<group>"; };
 		F8E861E71BBF45957746B77A /* emotion-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "emotion-face.png"; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_52C36C2C-7BDE-47BD-8C17-A4E71CDEAF5B" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -244,10 +244,10 @@
 			path = state;
 			sourceTree = "<group>";
 		};
-		"TEMP_59D8A19E-7E91-4FE0-BB93-B88088B6C9F5" /* watch-front */ = {
+		"TEMP_7E97ACC9-C691-400B-B304-AF71C3AEF28D" /* watch-front */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_52C36C2C-7BDE-47BD-8C17-A4E71CDEAF5B" /* signing.xcconfig */,
+				"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */,
 			);
 			path = "watch-front";
 			sourceTree = "<group>";
@@ -431,7 +431,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_52C36C2C-7BDE-47BD-8C17-A4E71CDEAF5B" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -529,7 +529,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_52C36C2C-7BDE-47BD-8C17-A4E71CDEAF5B" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
