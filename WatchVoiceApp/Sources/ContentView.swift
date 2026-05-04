@@ -16,6 +16,15 @@ struct ContentView: View {
     private let faceImage: Image =
         loadBundleImage("remi-face-dafult") ?? Image(systemName: "person.fill")
 
+    private func startBreath() {
+        withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
+            breathScale = 1.03
+        }
+    }
+    private func stopBreath() {
+        withAnimation(.default) { breathScale = 1.0 }
+    }
+
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.ignoresSafeArea()
@@ -24,12 +33,20 @@ struct ContentView: View {
                 .resizable()
                 .scaledToFill()
                 .scaleEffect(breathScale)
+                .drawingGroup()
                 .ignoresSafeArea()
                 .onAppear {
-                    withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
-                        breathScale = 1.03
-                    }
                     remi.prepareAudioSession()
+                    startBreath()
+                }
+                .onChange(of: remi.isPlaying) { _, playing in
+                    if playing { stopBreath() } else { startBreath() }
+                }
+                .onChange(of: remi.isLoading) { _, loading in
+                    if loading { stopBreath() } else if !remi.isPlaying { startBreath() }
+                }
+                .onChange(of: remi.isRecording) { _, recording in
+                    if recording { stopBreath() } else if !remi.isLoading && !remi.isPlaying { startBreath() }
                 }
 
             // partial STT text during recording

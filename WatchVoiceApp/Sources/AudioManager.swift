@@ -304,7 +304,7 @@ class RemiManager: ObservableObject {
                 guard let buf = floatBuffer(from: chunk, format: format) else { continue }
                 if !started {
                     pending.append(buf)
-                    if pending.count >= 3 {
+                    if pending.count >= 5 {
                         for b in pending {
                             player.scheduleBuffer(b, completionCallbackType: .dataConsumed, completionHandler: nil)
                         }
