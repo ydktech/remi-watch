@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D32BB97991202B50C4982 /* handwear.png */; };
+		08022C82A5880BC53D0129DB /* remi-face.png in Resources */ = {isa = PBXBuildFile; fileRef = CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */; };
+		0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E585A367B9A959E23A39D /* RemiWidget.swift */; };
+		255ED6F1798A93F72F49D91B /* eyelash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA30800A37C24B70AEF3CED8 /* eyelash.png */; };
+		2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B7B078B0FBD7F5886A181 /* topwear.png */; };
+		31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 05533DDE87F8DAD5D0098F7C /* headwear.png */; };
+		366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */ = {isa = PBXBuildFile; fileRef = 558A3237EFC86D3B33C7581B /* remi-face-dafult.png */; };
+		49576BF2F098E364F25C71DC /* image-face-talk.png in Resources */ = {isa = PBXBuildFile; fileRef = FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */; };
+		4FF7842B99C3AD1B648644F7 /* footwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 67931560E10D4BC9CC190A64 /* footwear.png */; };
+		5C735F4A24BBEF7564022CB4 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1E2623D6847130654FD3BC /* AudioManager.swift */; };
+		89D720EFEA66F2C751E1E508 /* image-face-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */; };
+		9DD55DFB46FB0384C3C2CFA1 /* eyebrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */; };
+		9FA71814B5E2EFAD45223021 /* mouth.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F130D892E9D5A2D25864C89 /* mouth.png */; };
+		A338A21F889E2AA2C49D9605 /* bottomwear.png in Resources */ = {isa = PBXBuildFile; fileRef = CCDA443580EC2556457EBA35 /* bottomwear.png */; };
+		A87B2093DF8E1C417A9BFFC6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F23099D16CB8E260FC0326 /* ContentView.swift */; };
+		AF595837D0A013688CAB37D9 /* legwear.png in Resources */ = {isa = PBXBuildFile; fileRef = A9D02DEFB4C64AAE9F397231 /* legwear.png */; };
+		C149EBAFB7AA340AA88BA441 /* WatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CAAD68A147476AB8538990A /* WatchApp.swift */; };
+		C3431EC7EAC47927017F4EC6 /* eyewhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 09496EF7170A02D0D751C98D /* eyewhite.png */; };
+		C3F910A3C09A6DC550581277 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = 5CCFAFF88D6ABC0C5532A0E7 /* face.png */; };
+		CCDD4BF1DEA36C5E29D4D653 /* neck.png in Resources */ = {isa = PBXBuildFile; fileRef = A92ABFD1798CBCC34632AD61 /* neck.png */; };
+		CD3FF7DE667CE19D992A3A62 /* back_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 53A76749F6692665E52FB96D /* back_hair.png */; };
+		D08BED8C2268000EC6DD96E0 /* irides.png in Resources */ = {isa = PBXBuildFile; fileRef = 64ECB995735AF38754B60C08 /* irides.png */; };
+		DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */ = {isa = PBXBuildFile; fileRef = DF93582DF24D0CFFC38960DB /* ears.png */; };
+		DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */ = {isa = PBXBuildFile; fileRef = A82687B62B540E55D6FD3A5B /* nose.png */; };
+		F6C84A4B86F8169E3104823B /* front_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4126E4590BFD702387FE24 /* front_hair.png */; };
+		F96CD949D719155E0296706F /* WatchVoiceAppWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		96F241D3E5E6F0E2358B55F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37EAB89A0D4B78E294A61F6C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E7E86451541FEF482B0FBE2;
+			remoteInfo = WatchVoiceAppWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9E1E80890FC46771150DE445 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F96CD949D719155E0296706F /* WatchVoiceAppWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		05533DDE87F8DAD5D0098F7C /* headwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = headwear.png; sourceTree = "<group>"; };
+		09496EF7170A02D0D751C98D /* eyewhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyewhite.png; sourceTree = "<group>"; };
+		297D32BB97991202B50C4982 /* handwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = handwear.png; sourceTree = "<group>"; };
+		2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-3.png"; sourceTree = "<group>"; };
+		2C1E2623D6847130654FD3BC /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
+		48F23099D16CB8E260FC0326 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4F130D892E9D5A2D25864C89 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
+		53A76749F6692665E52FB96D /* back_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_hair.png; sourceTree = "<group>"; };
+		558A3237EFC86D3B33C7581B /* remi-face-dafult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face-dafult.png"; sourceTree = "<group>"; };
+		5CCFAFF88D6ABC0C5532A0E7 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
+		5D0B7B078B0FBD7F5886A181 /* topwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topwear.png; sourceTree = "<group>"; };
+		64ECB995735AF38754B60C08 /* irides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irides.png; sourceTree = "<group>"; };
+		67931560E10D4BC9CC190A64 /* footwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = footwear.png; sourceTree = "<group>"; };
+		6AE184F0E816A5A7328059C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6CAAD68A147476AB8538990A /* WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchApp.swift; sourceTree = "<group>"; };
+		79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyebrow.png; sourceTree = "<group>"; };
+		851E585A367B9A959E23A39D /* RemiWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemiWidget.swift; sourceTree = "<group>"; };
+		9C4126E4590BFD702387FE24 /* front_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = front_hair.png; sourceTree = "<group>"; };
+		A82687B62B540E55D6FD3A5B /* nose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nose.png; sourceTree = "<group>"; };
+		A92ABFD1798CBCC34632AD61 /* neck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neck.png; sourceTree = "<group>"; };
+		A9D02DEFB4C64AAE9F397231 /* legwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legwear.png; sourceTree = "<group>"; };
+		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
+		CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face.png"; sourceTree = "<group>"; };
+		DA30800A37C24B70AEF3CED8 /* eyelash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyelash.png; sourceTree = "<group>"; };
+		DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatchVoiceAppWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
+		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
+		"TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1D470000CD200F2E5B53A476 /* WatchVoiceApp */ = {
+			isa = PBXGroup;
+			children = (
+				E2E2377D2FD1BFCA3C53BBB4 /* Resources */,
+				6976D33966BFD61DADAC3D0A /* Sources */,
+			);
+			path = WatchVoiceApp;
+			sourceTree = "<group>";
+		};
+		508C14FE2FA8998D00000804 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */ = {
+			isa = PBXGroup;
+			children = (
+				6AE184F0E816A5A7328059C1 /* Info.plist */,
+				851E585A367B9A959E23A39D /* RemiWidget.swift */,
+			);
+			path = WatchVoiceAppWidget;
+			sourceTree = "<group>";
+		};
+		6976D33966BFD61DADAC3D0A /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				2C1E2623D6847130654FD3BC /* AudioManager.swift */,
+				48F23099D16CB8E260FC0326 /* ContentView.swift */,
+				6CAAD68A147476AB8538990A /* WatchApp.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		78764B67BFC77E82BB50BFA7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */,
+				DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D237ADEC19264B1617D7847C = {
+			isa = PBXGroup;
+			children = (
+				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
+				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
+				78764B67BFC77E82BB50BFA7 /* Products */,
+				508C14FE2FA8998D00000804 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		E2E2377D2FD1BFCA3C53BBB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E41EDD2EAB0D9C0FEDF93738 /* layers */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E41EDD2EAB0D9C0FEDF93738 /* layers */ = {
+			isa = PBXGroup;
+			children = (
+				53A76749F6692665E52FB96D /* back_hair.png */,
+				CCDA443580EC2556457EBA35 /* bottomwear.png */,
+				DF93582DF24D0CFFC38960DB /* ears.png */,
+				79F0CC1E8D1BFAEBDBD31744 /* eyebrow.png */,
+				DA30800A37C24B70AEF3CED8 /* eyelash.png */,
+				09496EF7170A02D0D751C98D /* eyewhite.png */,
+				5CCFAFF88D6ABC0C5532A0E7 /* face.png */,
+				67931560E10D4BC9CC190A64 /* footwear.png */,
+				9C4126E4590BFD702387FE24 /* front_hair.png */,
+				297D32BB97991202B50C4982 /* handwear.png */,
+				05533DDE87F8DAD5D0098F7C /* headwear.png */,
+				2B7D9E40FCAE14056CF6A7FF /* image-face-3.png */,
+				FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */,
+				64ECB995735AF38754B60C08 /* irides.png */,
+				A9D02DEFB4C64AAE9F397231 /* legwear.png */,
+				4F130D892E9D5A2D25864C89 /* mouth.png */,
+				A92ABFD1798CBCC34632AD61 /* neck.png */,
+				A82687B62B540E55D6FD3A5B /* nose.png */,
+				558A3237EFC86D3B33C7581B /* remi-face-dafult.png */,
+				CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */,
+				5D0B7B078B0FBD7F5886A181 /* topwear.png */,
+			);
+			path = layers;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E7E86451541FEF482B0FBE2 /* WatchVoiceAppWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EDD2A8D74AF7EF31C1A7F28 /* Build configuration list for PBXNativeTarget "WatchVoiceAppWidget" */;
+			buildPhases = (
+				B3FCC3A333299EC8DDE8CBB6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WatchVoiceAppWidget;
+			packageProductDependencies = (
+			);
+			productName = WatchVoiceAppWidget;
+			productReference = DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B635B4C25A8A337AC0E98929 /* WatchVoiceApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C99D73DEF482C1ED2587FE62 /* Build configuration list for PBXNativeTarget "WatchVoiceApp" */;
+			buildPhases = (
+				D653DAB812FB8BA87B8C7549 /* Sources */,
+				2EBB14388F459B2A8FC552D2 /* Resources */,
+				9E1E80890FC46771150DE445 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9B591F4E3C5550957BA433F /* PBXTargetDependency */,
+			);
+			name = WatchVoiceApp;
+			packageProductDependencies = (
+			);
+			productName = WatchVoiceApp;
+			productReference = DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		37EAB89A0D4B78E294A61F6C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					7E7E86451541FEF482B0FBE2 = {
+						ProvisioningStyle = Automatic;
+					};
+					B635B4C25A8A337AC0E98929 = {
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = BB9D8B09420E08BAE16382C4 /* Build configuration list for PBXProject "WatchVoiceApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = D237ADEC19264B1617D7847C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 78764B67BFC77E82BB50BFA7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B635B4C25A8A337AC0E98929 /* WatchVoiceApp */,
+				7E7E86451541FEF482B0FBE2 /* WatchVoiceAppWidget */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2EBB14388F459B2A8FC552D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CD3FF7DE667CE19D992A3A62 /* back_hair.png in Resources */,
+				A338A21F889E2AA2C49D9605 /* bottomwear.png in Resources */,
+				DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */,
+				9DD55DFB46FB0384C3C2CFA1 /* eyebrow.png in Resources */,
+				255ED6F1798A93F72F49D91B /* eyelash.png in Resources */,
+				C3431EC7EAC47927017F4EC6 /* eyewhite.png in Resources */,
+				C3F910A3C09A6DC550581277 /* face.png in Resources */,
+				4FF7842B99C3AD1B648644F7 /* footwear.png in Resources */,
+				F6C84A4B86F8169E3104823B /* front_hair.png in Resources */,
+				07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */,
+				31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */,
+				89D720EFEA66F2C751E1E508 /* image-face-3.png in Resources */,
+				49576BF2F098E364F25C71DC /* image-face-talk.png in Resources */,
+				D08BED8C2268000EC6DD96E0 /* irides.png in Resources */,
+				AF595837D0A013688CAB37D9 /* legwear.png in Resources */,
+				9FA71814B5E2EFAD45223021 /* mouth.png in Resources */,
+				CCDD4BF1DEA36C5E29D4D653 /* neck.png in Resources */,
+				DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */,
+				366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */,
+				08022C82A5880BC53D0129DB /* remi-face.png in Resources */,
+				2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B3FCC3A333299EC8DDE8CBB6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D653DAB812FB8BA87B8C7549 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5C735F4A24BBEF7564022CB4 /* AudioManager.swift in Sources */,
+				A87B2093DF8E1C417A9BFFC6 /* ContentView.swift in Sources */,
+				C149EBAFB7AA340AA88BA441 /* WatchApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9B591F4E3C5550957BA433F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E7E86451541FEF482B0FBE2 /* WatchVoiceAppWidget */;
+			targetProxy = 96F241D3E5E6F0E2358B55F9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		2D04E0E13F3277E77675BA60 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp.widget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		A8F7F49FD644B734583850C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Release;
+		};
+		BE77EBDF1A0E86C5DED4D659 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp.widget;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+		C724CA27E9C5B492E2F390DD /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = "TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		EC148CB4B07AF7017C525EF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
+				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8EDD2A8D74AF7EF31C1A7F28 /* Build configuration list for PBXNativeTarget "WatchVoiceAppWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE77EBDF1A0E86C5DED4D659 /* Debug */,
+				2D04E0E13F3277E77675BA60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BB9D8B09420E08BAE16382C4 /* Build configuration list for PBXProject "WatchVoiceApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				79A7D8D5436B9F3CD6C30320 /* Debug */,
+				C724CA27E9C5B492E2F390DD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C99D73DEF482C1ED2587FE62 /* Build configuration list for PBXNativeTarget "WatchVoiceApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EC148CB4B07AF7017C525EF8 /* Debug */,
+				A8F7F49FD644B734583850C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 37EAB89A0D4B78E294A61F6C /* Project object */;
+}

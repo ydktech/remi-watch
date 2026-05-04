@@ -1,0 +1,33 @@
+# Secrets
+WatchVoiceApp/Sources/Secrets.swift
+.env
+
+# Xcode
+*.xcodeproj/xcuserdata/
+*.xcworkspace/xcuserdata/
+*.xcuserstate
+DerivedData/
+.DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+xcuserdata/
+
+# Build
+build/
+
+# OMC (Claude Code tool state)
+.omc/
+
+# Duplicate root-level assets (already in Resources/layers/)
+/remi-face-dafult.png
+/remi-face.png
+/image-face-talk.png
+/idle_swift_assets.zip
+
+# Notes
+character.md
+SWIFT_IDLE_SPEC.md
+
+# macOS
+.DS_Store

@@ -1,0 +1,83 @@
+name: WatchVoiceApp
+options:
+  deploymentTarget:
+    watchOS: "10.0"
+  bundleIdPrefix: com.ydk
+  createIntermediateGroups: true
+
+schemes:
+  WatchVoiceApp:
+    build:
+      targets:
+        WatchVoiceApp: all
+        WatchVoiceAppWidget: all
+    run:
+      config: Debug
+    archive:
+      config: Release
+  WatchVoiceAppWidget:
+    build:
+      targets:
+        WatchVoiceAppWidget: all
+    run:
+      config: Debug
+
+configFiles:
+  Debug: signing.xcconfig
+  Release: signing.xcconfig
+
+targets:
+  WatchVoiceApp:
+    type: application
+    platform: watchOS
+    sources:
+      - path: WatchVoiceApp/Sources
+      - path: WatchVoiceApp/Resources/layers
+        buildPhase: resources
+    dependencies:
+      - target: WatchVoiceAppWidget
+        embed: true
+        codeSign: true
+    info:
+      path: WatchVoiceApp/Info.plist
+      properties:
+        CFBundleDisplayName: VoiceApp
+        WKApplication: true
+        WKWatchOnly: true
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLSchemes:
+              - watchvoiceapp
+    signing:
+      team: 4QTBUHSXM9
+      automaticSigning: true
+    settings:
+      base:
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "4"
+        DEVELOPMENT_TEAM: "4QTBUHSXM9"
+        CODE_SIGN_STYLE: "Automatic"
+
+  WatchVoiceAppWidget:
+    type: app-extension
+    platform: watchOS
+    sources:
+      - path: WatchVoiceAppWidget
+    info:
+      path: WatchVoiceAppWidget/Info.plist
+      properties:
+        CFBundleDisplayName: RemiWidget
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    signing:
+      team: 4QTBUHSXM9
+      automaticSigning: true
+    settings:
+      base:
+        SWIFT_VERSION: "5.9"
+        TARGETED_DEVICE_FAMILY: "4"
+        DEVELOPMENT_TEAM: "4QTBUHSXM9"
+        CODE_SIGN_STYLE: "Automatic"
+        PRODUCT_BUNDLE_IDENTIFIER: "com.ydk.WatchVoiceApp.widget"
