@@ -51,7 +51,7 @@ struct ContentView: View {
 
             Button(action: {
                 if remi.isRecording {
-                    remi.cancelRecording()
+                    remi.commitRecording()
                 } else {
                     remi.startRecording()
                 }

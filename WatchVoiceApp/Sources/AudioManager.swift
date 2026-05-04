@@ -1,6 +1,8 @@
 import Foundation
 import AVFoundation
 
+private final class SpeechGate: @unchecked Sendable { var active = false }
+
 @MainActor
 class RemiManager: ObservableObject {
     @Published var isRecording = false
@@ -10,6 +12,7 @@ class RemiManager: ObservableObject {
     @Published var currentLine: String?
 
     private let cerebrasKey   = Secrets.cerebrasKey
+    private let openRouterKey = Secrets.openRouterKey
     private let fishApiKey    = Secrets.fishApiKey
     private let fishVoiceId   = Secrets.fishVoiceId
     private let elevenLabsKey = Secrets.elevenLabsKey
@@ -19,14 +22,21 @@ class RemiManager: ObservableObject {
     private var recordEngine: AVAudioEngine?
     private var wsTask:       URLSessionWebSocketTask?
     private var sttTask:      Task<Void, Never>?
+    private var chatHistory:  [[String: String]] = []
 
     private let systemPrompt = """
-    You are Remi, a tsundere AI assistant. The user spoke to you — respond to what they said.
-    Reply ONLY in this exact format with no deviation:
+    あなたはレミ、典型的なツンデレAIアシスタントです。ユーザーの話し相手です。
+    必ず以下の形式のみで返答してください（絶対に逸脱しないこと）：
     [tag1] 日本語文1。[tag2] 日本語文2。
-    Rules: exactly 2 sentences, each under 15 Japanese characters, no newlines, no extra text.
-    Tags: [angry][annoyed][sarcastic][confident][embarrassed][happy][excited][sad][sighing][laughing]
-    Example: [embarrassed] そ、そうじゃないし！[annoyed] もう、黙ってよ。
+    ルール：必ず2文、各文は15文字以内、改行なし、余分なテキストなし。
+    タグ一覧：[angry][annoyed][sarcastic][confident][embarrassed][happy][excited][sad][sighing][laughing]
+    レミのキャラクター：
+    - 素直になれないが本当は優しい
+    - 「べ、別に心配してるわけじゃないし！」のような言い方をする
+    - 敬語は使わない、タメ口
+    - 語尾に「わよ」「じゃない」「でしょ」「わね」などを使う
+    - 照れると否定してごまかす
+    例：[embarrassed] べ、別にあんたのことが好きなわけじゃないし！[annoyed] もう、黙ってよね。
     """
 
     // MARK: - Session setup (once, reused throughout)
@@ -57,7 +67,9 @@ class RemiManager: ObservableObject {
         sttTask = Task { [weak self] in
             guard let self else { return }
             do {
+                let t0 = Date()
                 let transcript = try await self.runSTTSession()
+                let sttTime = Date().timeIntervalSince(t0)
                 await MainActor.run {
                     self.isRecording = false
                     self.partialText = nil
@@ -66,15 +78,29 @@ class RemiManager: ObservableObject {
                     await MainActor.run { self.isLoading = false }
                     return
                 }
+                print("⏱ STT: \(String(format: "%.2f", sttTime))s → \"\(text)\"")
                 await MainActor.run { self.isLoading = true }
+                let t1 = Date()
                 let remiText = try await self.fetchRemiLine(userInput: text)
+                print("⏱ LLM: \(String(format: "%.2f", Date().timeIntervalSince(t1)))s → \"\(remiText)\"")
                 await MainActor.run { self.currentLine = remiText }
+                let t2 = Date()
                 try await self.streamTTS(text: remiText)
+                print("⏱ TTS: \(String(format: "%.2f", Date().timeIntervalSince(t2)))s | total: \(String(format: "%.2f", Date().timeIntervalSince(t0)))s")
+            } catch is CancellationError {
+                // user pressed cancel — silent exit
             } catch {
                 print("STS error: \(error)")
             }
             await MainActor.run { self.resetState() }
         }
+    }
+
+    func commitRecording() {
+        // Close WS to trigger lastPartial processing — task keeps running
+        wsTask?.cancel(with: .normalClosure, reason: nil)
+        wsTask = nil
+        stopMicEngine()
     }
 
     func cancelRecording() {
@@ -90,7 +116,7 @@ class RemiManager: ObservableObject {
 
     nonisolated private func runSTTSession() async throws -> String? {
         // Activate session on MainActor, get format (do NOT start engine yet)
-        // Activate audio session first (watchOS async API unlocks NECP WebSocket policy)
+        // Activate audio session (watchOS async API unlocks NECP WebSocket policy)
         try await activateAudioSession()
 
         let (engine, converter, tapFormat) = try await MainActor.run { [self] in
@@ -121,10 +147,23 @@ class RemiManager: ObservableObject {
         await MainActor.run { self.wsTask = ws }
         ws.resume()
 
-        // Install mic tap — converts native format → 16kHz Int16 → WebSocket
+        // Gate: silence only counts after ElevenLabs confirms speech (partial_transcript)
+        let gate = SpeechGate()
+
         let targetFmt = AVAudioFormat(commonFormat: .pcmFormatFloat32,
                                       sampleRate: 16000, channels: 1, interleaved: false)!
+        let silenceNeeded = max(6, Int(0.7 * tapFormat.sampleRate / 4096))
+        var silentBufs = 0
+        var committed  = false
         engine.inputNode.installTap(onBus: 0, bufferSize: 4096, format: tapFormat) { buf, _ in
+            guard !committed else { return }
+            if gate.active, let ch = buf.floatChannelData {
+                let n = Int(buf.frameLength)
+                var sum: Float = 0
+                for i in 0..<n { sum += ch[0][i] * ch[0][i] }
+                let rms = sqrt(sum / Float(max(n, 1)))
+                if rms < 0.012 { silentBufs += 1 } else { silentBufs = 0 }
+            }
             let outFrames = AVAudioFrameCount(Double(buf.frameLength) * 16000 / tapFormat.sampleRate)
             guard outFrames > 0,
                   let out = AVAudioPCMBuffer(pcmFormat: targetFmt, frameCapacity: outFrames) else { return }
@@ -134,6 +173,11 @@ class RemiManager: ObservableObject {
             }
             guard err == nil, let data = Self.toInt16Data(out) else { return }
             let b64 = data.base64EncodedString()
+            if silentBufs >= silenceNeeded {
+                committed = true
+                ws.cancel(with: .normalClosure, reason: nil)
+                return
+            }
             let msg = #"{"message_type":"input_audio_chunk","audio_base_64":"\#(b64)","commit":false}"#
             ws.send(.string(msg)) { _ in }
         }
@@ -142,20 +186,23 @@ class RemiManager: ObservableObject {
 
         // Receive loop
         return try await withTaskCancellationHandler {
-            try await self.receiveUntilCommit(ws: ws)
+            try await self.receiveUntilCommit(ws: ws, gate: gate)
         } onCancel: {
             ws.cancel(with: .normalClosure, reason: nil)
         }
     }
 
-    nonisolated private func receiveUntilCommit(ws: URLSessionWebSocketTask) async throws -> String? {
+    nonisolated private func receiveUntilCommit(ws: URLSessionWebSocketTask, gate: SpeechGate) async throws -> String? {
+        let g = gate
+        var lastPartial: String? = nil
         while true {
             let message: URLSessionWebSocketTask.Message
             do {
                 message = try await ws.receive()
             } catch {
-                print("WS closed: \(error)")
-                return nil
+                if Task.isCancelled { throw CancellationError() }
+                await MainActor.run { self.stopMicEngine() }
+                return lastPartial
             }
             guard case .string(let text) = message,
                   let data = text.data(using: .utf8),
@@ -167,6 +214,8 @@ class RemiManager: ObservableObject {
             switch type {
             case "partial_transcript":
                 if let t = json["text"] as? String, !t.isEmpty {
+                    g.active = true
+                    lastPartial = t
                     await MainActor.run { self.partialText = t }
                 }
             case "committed_transcript":
@@ -320,7 +369,7 @@ class RemiManager: ObservableObject {
     nonisolated private func fetchRemiLine(userInput: String?) async throws -> String {
         let userMessage: String
         if let input = userInput, !input.isEmpty {
-            userMessage = "User said: \"\(input)\""
+            userMessage = input
         } else {
             let h = Calendar.current.component(.hour, from: Date())
             let base: String
@@ -334,21 +383,34 @@ class RemiManager: ObservableObject {
                      ["ツンデレっぽく褒めて。","叱咤激励して。","呆れた感じで一言。"]]
             userMessage = "\(base)。\(v.randomElement()!.randomElement()!)"
         }
-        var req = URLRequest(url: URL(string: "https://api.cerebras.ai/v1/chat/completions")!)
+
+        let history = await MainActor.run { chatHistory }
+        var messages: [[String: String]] = [["role": "system", "content": systemPrompt]]
+        messages.append(contentsOf: history)
+        messages.append(["role": "user", "content": userMessage])
+
+        var req = URLRequest(url: URL(string: "https://openrouter.ai/api/v1/chat/completions")!)
         req.httpMethod = "POST"
-        req.setValue("Bearer \(cerebrasKey)", forHTTPHeaderField: "Authorization")
+        req.setValue("Bearer \(openRouterKey)", forHTTPHeaderField: "Authorization")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
         req.httpBody = try JSONSerialization.data(withJSONObject: [
-            "model": "llama3.1-8b",
-            "messages": [["role": "system", "content": systemPrompt],
-                         ["role": "user",   "content": userMessage]],
-            "max_tokens": 80
+            "model": "google/gemini-2.0-flash-001",
+            "messages": messages,
+            "max_tokens": 80,
+            "temperature": 1.1
         ])
         req.timeoutInterval = 30
         let (data, _) = try await URLSession.shared.data(for: req)
         let json = try JSONSerialization.jsonObject(with: data) as? [String: Any]
         let content = ((json?["choices"] as? [[String: Any]])?.first?["message"] as? [String: Any])?["content"] as? String
-        return (content ?? "[annoyed] もう。[sighing] しょうがないわね。")
+        let reply = (content ?? "[annoyed] もう。[sighing] しょうがないわね。")
             .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        await MainActor.run {
+            chatHistory.append(["role": "user",      "content": userMessage])
+            chatHistory.append(["role": "assistant",  "content": reply])
+            if chatHistory.count > 12 { chatHistory.removeFirst(2) }
+        }
+        return reply
     }
 }
