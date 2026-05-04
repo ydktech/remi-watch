@@ -13,6 +13,7 @@
 		0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E585A367B9A959E23A39D /* RemiWidget.swift */; };
 		19901E0AAF59F08A96EFAA57 /* th_mouth_open.png in Resources */ = {isa = PBXBuildFile; fileRef = 1719523564989DB8E65892FA /* th_mouth_open.png */; };
 		255ED6F1798A93F72F49D91B /* eyelash.png in Resources */ = {isa = PBXBuildFile; fileRef = DA30800A37C24B70AEF3CED8 /* eyelash.png */; };
+		2CE0F8751335F6AC25982854 /* hud-state.json in Resources */ = {isa = PBXBuildFile; fileRef = CE187CF5F7D7E115F20BD3E5 /* hud-state.json */; };
 		2E3803B60DA44EABD1FC5625 /* topwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D0B7B078B0FBD7F5886A181 /* topwear.png */; };
 		31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 05533DDE87F8DAD5D0098F7C /* headwear.png */; };
 		366EA08498DB6DFAFD0AA6B3 /* remi-face-dafult.png in Resources */ = {isa = PBXBuildFile; fileRef = 558A3237EFC86D3B33C7581B /* remi-face-dafult.png */; };
@@ -93,12 +94,13 @@
 		B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
 		CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face.png"; sourceTree = "<group>"; };
+		CE187CF5F7D7E115F20BD3E5 /* hud-state.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "hud-state.json"; sourceTree = "<group>"; };
 		DA30800A37C24B70AEF3CED8 /* eyelash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyelash.png; sourceTree = "<group>"; };
 		DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WatchVoiceAppWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_6A1C0ECB-65EC-4BAF-B365-003E4838DD37" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -138,6 +140,14 @@
 				DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9FB5A8F2E114C5E01548B9A8 /* .omc */ = {
+			isa = PBXGroup;
+			children = (
+				EC691E28008163876F7C3B89 /* state */,
+			);
+			path = .omc;
 			sourceTree = "<group>";
 		};
 		D237ADEC19264B1617D7847C = {
@@ -185,14 +195,23 @@
 				B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */,
 				1719523564989DB8E65892FA /* th_mouth_open.png */,
 				5D0B7B078B0FBD7F5886A181 /* topwear.png */,
+				9FB5A8F2E114C5E01548B9A8 /* .omc */,
 			);
 			path = layers;
 			sourceTree = "<group>";
 		};
-		"TEMP_9DF3569C-2FCB-496F-9736-9A47AED142F7" /* watch-front */ = {
+		EC691E28008163876F7C3B89 /* state */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */,
+				CE187CF5F7D7E115F20BD3E5 /* hud-state.json */,
+			);
+			path = state;
+			sourceTree = "<group>";
+		};
+		"TEMP_76CA2ABA-054B-42CD-A95A-DDB0B2A41566" /* watch-front */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_6A1C0ECB-65EC-4BAF-B365-003E4838DD37" /* signing.xcconfig */,
 			);
 			path = "watch-front";
 			sourceTree = "<group>";
@@ -293,6 +312,7 @@
 				F6C84A4B86F8169E3104823B /* front_hair.png in Resources */,
 				07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */,
 				31FFAB69AD9A98DE92FEF830 /* headwear.png in Resources */,
+				2CE0F8751335F6AC25982854 /* hud-state.json in Resources */,
 				89D720EFEA66F2C751E1E508 /* image-face-3.png in Resources */,
 				49576BF2F098E364F25C71DC /* image-face-talk.png in Resources */,
 				D08BED8C2268000EC6DD96E0 /* irides.png in Resources */,
@@ -363,7 +383,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_6A1C0ECB-65EC-4BAF-B365-003E4838DD37" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -461,7 +481,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_6A1C0ECB-65EC-4BAF-B365-003E4838DD37" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

@@ -21,19 +21,21 @@ struct ContentView: View {
         ZStack(alignment: .bottom) {
             Color.black.ignoresSafeArea()
 
-            Canvas { ctx, size in
-                let rect = CGRect(origin: .zero, size: size)
-                if let img = baseImg      { ctx.draw(img, in: rect) }
-                if let img = mouthOpenImg, remi.mouthAmplitude > 0.02 {
-                    ctx.drawLayer { inner in
-                        inner.opacity = Double(min(1.0, remi.mouthAmplitude))
-                        inner.draw(img, in: rect)
+            TimelineView(.animation(minimumInterval: 1.0/15.0, paused: false)) { _ in
+                Canvas { ctx, size in
+                    let rect = CGRect(origin: .zero, size: size)
+                    if let img = baseImg      { ctx.draw(img, in: rect) }
+                    if let img = mouthOpenImg, remi.mouthAmplitude > 0.02 {
+                        ctx.drawLayer { inner in
+                            inner.opacity = Double(min(1.0, remi.mouthAmplitude))
+                            inner.draw(img, in: rect)
+                        }
                     }
-                }
-                if let img = eyeClosedImg, eyeWeight > 0.01 {
-                    ctx.drawLayer { inner in
-                        inner.opacity = eyeWeight
-                        inner.draw(img, in: rect)
+                    if let img = eyeClosedImg, eyeWeight > 0.01 {
+                        ctx.drawLayer { inner in
+                            inner.opacity = eyeWeight
+                            inner.draw(img, in: rect)
+                        }
                     }
                 }
             }

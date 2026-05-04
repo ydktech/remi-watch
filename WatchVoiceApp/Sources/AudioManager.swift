@@ -282,8 +282,13 @@ class RemiManager: ObservableObject {
         try engine.start()
 
         let tapFmt = engine.mainMixerNode.outputFormat(forBus: 0)
+        var lastTap = Date.distantPast
         engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: tapFmt) { [weak self] buf, _ in
-            guard let self, let ch = buf.floatChannelData else { return }
+            guard let self else { return }
+            let now = Date()
+            guard now.timeIntervalSince(lastTap) >= 1.0/15.0 else { return }
+            lastTap = now
+            guard let ch = buf.floatChannelData else { return }
             let n = Int(buf.frameLength)
             var sum: Float = 0
             for i in 0..<n { sum += ch[0][i] * ch[0][i] }
