@@ -32,3 +32,4 @@ SWIFT_IDLE_SPEC.md
 
 # macOS
 .DS_Store
+.claude/

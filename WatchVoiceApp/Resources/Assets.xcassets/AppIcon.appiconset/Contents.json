@@ -1,0 +1,34 @@
+{
+  "images": [
+    {
+      "filename": "icon-remi.png",
+      "idiom": "watch",
+      "role": "appLauncher",
+      "scale": "2x"
+    },
+    {
+      "filename": "icon-remi.png",
+      "idiom": "watch",
+      "role": "quickLook",
+      "scale": "2x"
+    },
+    {
+      "filename": "icon-remi.png",
+      "idiom": "watch",
+      "role": "notificationCenter",
+      "scale": "2x",
+      "subtype": "38mm"
+    },
+    {
+      "filename": "icon-remi.png",
+      "idiom": "watch",
+      "role": "notificationCenter",
+      "scale": "2x",
+      "subtype": "42mm"
+    }
+  ],
+  "info": {
+    "author": "xcode",
+    "version": 1
+  }
+}
