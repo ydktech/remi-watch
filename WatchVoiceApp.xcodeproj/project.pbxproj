@@ -103,6 +103,14 @@
 			path = WatchVoiceApp;
 			sourceTree = "<group>";
 		};
+		508C15042FA8CE2300000804 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +146,7 @@
 				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
 				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
 				78764B67BFC77E82BB50BFA7 /* Products */,
+				508C15042FA8CE2300000804 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,14 +184,6 @@
 				5D0B7B078B0FBD7F5886A181 /* topwear.png */,
 			);
 			path = layers;
-			sourceTree = "<group>";
-		};
-		"TEMP_366C3AF4-4C79-4423-B3C6-E9CC616C1DB6" /* watch-front */ = {
-			isa = PBXGroup;
-			children = (
-				"TEMP_99AF0986-00A3-4C91-9DC9-1EC513434CFC" /* signing.xcconfig */,
-			);
-			path = "watch-front";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,11 +236,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					7E7E86451541FEF482B0FBE2 = {
-						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 					B635B4C25A8A337AC0E98929 = {
-						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -330,7 +329,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -414,7 +413,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
@@ -428,7 +427,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -505,7 +504,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
