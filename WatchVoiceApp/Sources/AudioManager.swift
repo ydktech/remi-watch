@@ -192,11 +192,10 @@ class RemiManager: ObservableObject {
         func field(_ name: String, _ value: String) {
             append("--\(boundary)\r\nContent-Disposition: form-data; name=\"\(name)\"\r\n\r\n\(value)\r\n")
         }
-        append("--\(boundary)\r\nContent-Disposition: form-data; name=\"file\"; filename=\"audio.pcm\"\r\nContent-Type: application/octet-stream\r\n\r\n")
-        body.append(pcmData)
+        let wavData = Self.makeWAV(pcm: pcmData)
+        append("--\(boundary)\r\nContent-Disposition: form-data; name=\"file\"; filename=\"audio.wav\"\r\nContent-Type: audio/wav\r\n\r\n")
+        body.append(wavData)
         append("\r\n")
-        field("audio_format", "pcm")
-        field("sample_rate", "16000")
         field("language", "ja")
         append("--\(boundary)--\r\n")
         req.httpBody = body
@@ -215,6 +214,30 @@ class RemiManager: ObservableObject {
         recordEngine?.inputNode.removeTap(onBus: 0)
         recordEngine?.stop()
         recordEngine = nil
+    }
+
+    nonisolated private static func makeWAV(pcm: Data, sampleRate: UInt32 = 16000, channels: UInt16 = 1) -> Data {
+        let dataSize = UInt32(pcm.count)
+        var h = Data(count: 44)
+        func u32le(_ offset: Int, _ v: UInt32) {
+            h[offset]=UInt8(v&0xFF); h[offset+1]=UInt8((v>>8)&0xFF)
+            h[offset+2]=UInt8((v>>16)&0xFF); h[offset+3]=UInt8((v>>24)&0xFF)
+        }
+        func u16le(_ offset: Int, _ v: UInt16) { h[offset]=UInt8(v&0xFF); h[offset+1]=UInt8((v>>8)&0xFF) }
+        h[0]=0x52; h[1]=0x49; h[2]=0x46; h[3]=0x46          // "RIFF"
+        u32le(4, dataSize + 36)                               // ChunkSize
+        h[8]=0x57; h[9]=0x41; h[10]=0x56; h[11]=0x45        // "WAVE"
+        h[12]=0x66; h[13]=0x6D; h[14]=0x74; h[15]=0x20      // "fmt "
+        u32le(16, 16)                                         // Subchunk1Size
+        u16le(20, 1)                                          // AudioFormat PCM
+        u16le(22, channels)
+        u32le(24, sampleRate)
+        u32le(28, sampleRate * UInt32(channels) * 2)          // ByteRate
+        u16le(32, channels * 2)                               // BlockAlign
+        u16le(34, 16)                                         // BitsPerSample
+        h[36]=0x64; h[37]=0x61; h[38]=0x74; h[39]=0x61      // "data"
+        u32le(40, dataSize)
+        return h + pcm
     }
 
     nonisolated private static func toInt16Data(_ buf: AVAudioPCMBuffer) -> Data? {
