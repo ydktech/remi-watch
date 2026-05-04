@@ -1,8 +1,6 @@
 import Foundation
 import AVFoundation
 
-private final class SpeechGate: @unchecked Sendable { var active = false }
-
 @MainActor
 class RemiManager: ObservableObject {
     @Published var isRecording = false
@@ -98,8 +96,7 @@ class RemiManager: ObservableObject {
     }
 
     func commitRecording() {
-        // Close WS to trigger lastPartial processing — task keeps running
-        wsTask?.cancel(with: .normalClosure, reason: nil)
+        wsTask?.send(.string(#"{"type":"audio.done"}"#)) { _ in }
         wsTask = nil
         stopMicEngine()
     }
@@ -113,7 +110,7 @@ class RemiManager: ObservableObject {
         resetState()
     }
 
-    // MARK: - ElevenLabs Realtime STT
+    // MARK: - Grok Realtime STT
 
     nonisolated private func runSTTSession() async throws -> String? {
         try await activateAudioSession()
@@ -130,37 +127,27 @@ class RemiManager: ObservableObject {
             return (eng, conv, nativeFmt)
         }
 
-        var comps = URLComponents(string: "wss://api.elevenlabs.io/v1/speech-to-text/realtime")!
+        var comps = URLComponents(string: "wss://api.x.ai/v1/stt")!
         comps.queryItems = [
-            URLQueryItem(name: "model_id",        value: "scribe_v2_realtime"),
-            URLQueryItem(name: "language_code",   value: "ja"),
-            URLQueryItem(name: "audio_format",    value: "pcm_16000"),
-            URLQueryItem(name: "commit_strategy", value: "vad"),
-            URLQueryItem(name: "no_verbatim",     value: "true"),
+            URLQueryItem(name: "sample_rate",     value: "16000"),
+            URLQueryItem(name: "encoding",        value: "pcm"),
+            URLQueryItem(name: "interim_results", value: "true"),
+            URLQueryItem(name: "language",        value: "ja"),
+            URLQueryItem(name: "endpointing",     value: "600"),
         ]
         var req = URLRequest(url: comps.url!)
-        req.setValue(elevenLabsKey, forHTTPHeaderField: "xi-api-key")
+        req.setValue("Bearer \(xaiKey)", forHTTPHeaderField: "Authorization")
         req.networkServiceType = .avStreaming
         let ws = URLSession.shared.webSocketTask(with: req)
         await MainActor.run { self.wsTask = ws }
         ws.resume()
 
-        let gate = SpeechGate()
+        // Wait for server ready signal
+        _ = try await ws.receive()
 
         let targetFmt = AVAudioFormat(commonFormat: .pcmFormatFloat32,
                                       sampleRate: 16000, channels: 1, interleaved: false)!
-        let silenceNeeded = max(6, Int(0.7 * tapFormat.sampleRate / 4096))
-        var silentBufs = 0
-        var committed  = false
         engine.inputNode.installTap(onBus: 0, bufferSize: 4096, format: tapFormat) { buf, _ in
-            guard !committed else { return }
-            if gate.active, let ch = buf.floatChannelData {
-                let n = Int(buf.frameLength)
-                var sum: Float = 0
-                for i in 0..<n { sum += ch[0][i] * ch[0][i] }
-                let rms = sqrt(sum / Float(max(n, 1)))
-                if rms < 0.012 { silentBufs += 1 } else { silentBufs = 0 }
-            }
             let outFrames = AVAudioFrameCount(Double(buf.frameLength) * 16000 / tapFormat.sampleRate)
             guard outFrames > 0,
                   let out = AVAudioPCMBuffer(pcmFormat: targetFmt, frameCapacity: outFrames) else { return }
@@ -169,28 +156,20 @@ class RemiManager: ObservableObject {
                 status.pointee = .haveData; return buf
             }
             guard err == nil, let data = Self.toInt16Data(out) else { return }
-            let b64 = data.base64EncodedString()
-            if silentBufs >= silenceNeeded {
-                committed = true
-                ws.cancel(with: .normalClosure, reason: nil)
-                return
-            }
-            let msg = #"{"message_type":"input_audio_chunk","audio_base_64":"\#(b64)","commit":false}"#
-            ws.send(.string(msg)) { _ in }
+            ws.send(.data(data)) { _ in }
         }
 
         try engine.start()
 
         return try await withTaskCancellationHandler {
-            try await self.receiveUntilCommit(ws: ws, gate: gate)
+            try await self.receiveUntilDone(ws: ws)
         } onCancel: {
             ws.cancel(with: .normalClosure, reason: nil)
         }
     }
 
-    nonisolated private func receiveUntilCommit(ws: URLSessionWebSocketTask, gate: SpeechGate) async throws -> String? {
-        let g = gate
-        var lastPartial: String? = nil
+    nonisolated private func receiveUntilDone(ws: URLSessionWebSocketTask) async throws -> String? {
+        var lastText: String? = nil
         while true {
             let message: URLSessionWebSocketTask.Message
             do {
@@ -198,31 +177,34 @@ class RemiManager: ObservableObject {
             } catch {
                 if Task.isCancelled { throw CancellationError() }
                 await MainActor.run { self.stopMicEngine() }
-                return lastPartial
+                return lastText
             }
-            guard case .string(let text) = message,
-                  let data = text.data(using: .utf8),
+            guard case .string(let raw) = message,
+                  let data = raw.data(using: .utf8),
                   let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-                  let type = json["message_type"] as? String else { continue }
+                  let type = json["type"] as? String else { continue }
 
-            print("WS [\(type)]: \(json["text"] ?? "")")
+            print("Grok STT [\(type)]: \(json["text"] ?? "")")
 
             switch type {
-            case "partial_transcript":
-                if let t = json["text"] as? String, !t.isEmpty {
-                    g.active = true
-                    lastPartial = t
+            case "transcript.partial":
+                let t = json["text"] as? String ?? ""
+                let speechFinal = json["speech_final"] as? Bool ?? false
+                if !t.isEmpty {
+                    lastText = t
                     await MainActor.run { self.partialText = t }
                 }
-            case "committed_transcript":
-                let transcript = json["text"] as? String ?? ""
-                guard !transcript.isEmpty else { continue }
+                if speechFinal {
+                    ws.send(.string(#"{"type":"audio.done"}"#)) { _ in }
+                    await MainActor.run { self.stopMicEngine() }
+                }
+            case "transcript.done":
+                let final = json["text"] as? String ?? ""
                 ws.cancel(with: .normalClosure, reason: nil)
                 await MainActor.run { self.stopMicEngine() }
-                return transcript
-            case "auth_error":
-                print("ElevenLabs auth error — check API key")
-                throw URLError(.userAuthenticationRequired)
+                return final.isEmpty ? lastText : final
+            case "error":
+                print("Grok STT error: \(json["message"] ?? "")")
             default: break
             }
         }
