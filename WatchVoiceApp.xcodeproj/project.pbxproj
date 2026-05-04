@@ -111,7 +111,7 @@
 		A92ABFD1798CBCC34632AD61 /* neck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neck.png; sourceTree = "<group>"; };
 		A9D02DEFB4C64AAE9F397231 /* legwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legwear.png; sourceTree = "<group>"; };
 		AC78C6A6EEFB0FF5827A19A5 /* face_disgust.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face_disgust.png; sourceTree = "<group>"; };
-		B468CDD03C0905399B356593 /* -0 */ = {isa = PBXFileReference; path = "-0"; sourceTree = "<group>"; };
+		B468CDD03C0905399B356593 /* -0 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "-0"; sourceTree = "<group>"; };
 		B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_eye_closed.png; sourceTree = "<group>"; };
 		B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
@@ -135,6 +135,14 @@
 				6976D33966BFD61DADAC3D0A /* Sources */,
 			);
 			path = WatchVoiceApp;
+			sourceTree = "<group>";
+		};
+		50A6EC722FA906F7009A45E4 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */ = {
@@ -180,6 +188,7 @@
 				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
 				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
 				78764B67BFC77E82BB50BFA7 /* Products */,
+				50A6EC722FA906F7009A45E4 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,14 +253,6 @@
 			path = state;
 			sourceTree = "<group>";
 		};
-		"TEMP_7E97ACC9-C691-400B-B304-AF71C3AEF28D" /* watch-front */ = {
-			isa = PBXGroup;
-			children = (
-				"TEMP_728106FC-D556-4380-A0EC-C82CAEA9EFCC" /* signing.xcconfig */,
-			);
-			path = "watch-front";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,11 +303,9 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					7E7E86451541FEF482B0FBE2 = {
-						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 					B635B4C25A8A337AC0E98929 = {
-						DevelopmentTeam = 4QTBUHSXM9;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -414,7 +413,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -498,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
@@ -512,7 +511,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceAppWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -589,7 +588,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4QTBUHSXM9;
+				DEVELOPMENT_TEAM = 54VL5SQCP7;
 				INFOPLIST_FILE = WatchVoiceApp/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ydk.WatchVoiceApp;
 				SDKROOT = watchos;
