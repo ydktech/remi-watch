@@ -1,11 +1,10 @@
 import SwiftUI
 import ImageIO
 
-private func loadBundleImage(_ name: String) -> Image? {
-    guard let url = Bundle.main.url(forResource: name, withExtension: "png"),
-          let src = CGImageSourceCreateWithURL(url as CFURL, nil),
-          let cg = CGImageSourceCreateImageAtIndex(src, 0, nil) else { return nil }
-    return Image(decorative: cg, scale: 1.0)
+private func loadCGImage(_ name: String) -> CGImage {
+    let url = Bundle.main.url(forResource: name, withExtension: "png")!
+    let src = CGImageSourceCreateWithURL(url as CFURL, nil)!
+    return CGImageSourceCreateImageAtIndex(src, 0, nil)!
 }
 
 struct ContentView: View {
@@ -13,9 +12,9 @@ struct ContentView: View {
     @State private var recordPulse: CGFloat = 1.0
     @State private var eyeWeight: Double = 0.0
 
-    private let baseImg      = loadBundleImage("th_base")
-    private let mouthOpenImg = loadBundleImage("th_mouth_open")
-    private let eyeClosedImg = loadBundleImage("th_eye_closed")
+    private let base      = Image(decorative: loadCGImage("th_base"),      scale: 1)
+    private let mouthOpen = Image(decorative: loadCGImage("th_mouth_open"), scale: 1)
+    private let eyeClosed = Image(decorative: loadCGImage("th_eye_closed"), scale: 1)
 
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -24,18 +23,16 @@ struct ContentView: View {
             TimelineView(.animation(minimumInterval: 1.0/15.0, paused: false)) { _ in
                 Canvas { ctx, size in
                     let rect = CGRect(origin: .zero, size: size)
-                    if let img = baseImg      { ctx.draw(img, in: rect) }
-                    if let img = mouthOpenImg, remi.mouthAmplitude > 0.02 {
-                        ctx.drawLayer { inner in
-                            inner.opacity = Double(min(1.0, remi.mouthAmplitude))
-                            inner.draw(img, in: rect)
-                        }
+                    ctx.draw(base, in: rect)
+                    if remi.mouthAmplitude > 0.02 {
+                        var c = ctx
+                        c.opacity = Double(min(1, remi.mouthAmplitude))
+                        c.draw(mouthOpen, in: rect)
                     }
-                    if let img = eyeClosedImg, eyeWeight > 0.01 {
-                        ctx.drawLayer { inner in
-                            inner.opacity = eyeWeight
-                            inner.draw(img, in: rect)
-                        }
+                    if eyeWeight > 0.01 {
+                        var c = ctx
+                        c.opacity = eyeWeight
+                        c.draw(eyeClosed, in: rect)
                     }
                 }
             }
