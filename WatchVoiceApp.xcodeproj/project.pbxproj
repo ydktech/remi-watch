@@ -31,6 +31,7 @@
 		D08BED8C2268000EC6DD96E0 /* irides.png in Resources */ = {isa = PBXBuildFile; fileRef = 64ECB995735AF38754B60C08 /* irides.png */; };
 		DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */ = {isa = PBXBuildFile; fileRef = DF93582DF24D0CFFC38960DB /* ears.png */; };
 		DD3FEF36D566D15801EA0AC4 /* nose.png in Resources */ = {isa = PBXBuildFile; fileRef = A82687B62B540E55D6FD3A5B /* nose.png */; };
+		E2318D5850BF6CD1064AAF21 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57054254CA622C5D5C0E35FC /* Secrets.swift */; };
 		F6C84A4B86F8169E3104823B /* front_hair.png in Resources */ = {isa = PBXBuildFile; fileRef = 9C4126E4590BFD702387FE24 /* front_hair.png */; };
 		F96CD949D719155E0296706F /* WatchVoiceAppWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = DB2561F736FC668B4D999039 /* WatchVoiceAppWidget.appex */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -69,6 +70,7 @@
 		4F130D892E9D5A2D25864C89 /* mouth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mouth.png; sourceTree = "<group>"; };
 		53A76749F6692665E52FB96D /* back_hair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_hair.png; sourceTree = "<group>"; };
 		558A3237EFC86D3B33C7581B /* remi-face-dafult.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face-dafult.png"; sourceTree = "<group>"; };
+		57054254CA622C5D5C0E35FC /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		5CCFAFF88D6ABC0C5532A0E7 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
 		5D0B7B078B0FBD7F5886A181 /* topwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topwear.png; sourceTree = "<group>"; };
 		64ECB995735AF38754B60C08 /* irides.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = irides.png; sourceTree = "<group>"; };
@@ -88,7 +90,7 @@
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_56441BCA-068B-46B7-BBBC-1721616BE6EA" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -101,10 +103,10 @@
 			path = WatchVoiceApp;
 			sourceTree = "<group>";
 		};
-		508C14FE2FA8998D00000804 /* Recovered References */ = {
+		508C15012FA8A44D00000804 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */,
+				"TEMP_56441BCA-068B-46B7-BBBC-1721616BE6EA" /* signing.xcconfig */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -123,6 +125,7 @@
 			children = (
 				2C1E2623D6847130654FD3BC /* AudioManager.swift */,
 				48F23099D16CB8E260FC0326 /* ContentView.swift */,
+				57054254CA622C5D5C0E35FC /* Secrets.swift */,
 				6CAAD68A147476AB8538990A /* WatchApp.swift */,
 			);
 			path = Sources;
@@ -143,7 +146,7 @@
 				1D470000CD200F2E5B53A476 /* WatchVoiceApp */,
 				59D288D983A1FEAD5B715275 /* WatchVoiceAppWidget */,
 				78764B67BFC77E82BB50BFA7 /* Products */,
-				508C14FE2FA8998D00000804 /* Recovered References */,
+				508C15012FA8A44D00000804 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -306,6 +309,7 @@
 			files = (
 				5C735F4A24BBEF7564022CB4 /* AudioManager.swift in Sources */,
 				A87B2093DF8E1C417A9BFFC6 /* ContentView.swift in Sources */,
+				E2318D5850BF6CD1064AAF21 /* Secrets.swift in Sources */,
 				C149EBAFB7AA340AA88BA441 /* WatchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +346,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_56441BCA-068B-46B7-BBBC-1721616BE6EA" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -440,7 +444,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_91862924-FAE0-4D48-9CF4-9ADBAD53B433" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_56441BCA-068B-46B7-BBBC-1721616BE6EA" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

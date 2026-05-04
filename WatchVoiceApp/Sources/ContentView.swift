@@ -10,8 +10,8 @@ private func loadBundleImage(_ name: String) -> Image? {
 
 struct ContentView: View {
     @StateObject private var remi = RemiManager()
-    @State private var buttonLocked = false
     @State private var breathScale: CGFloat = 1.0
+    @State private var recordPulse: CGFloat = 1.0
 
     private let faceImage: Image =
         loadBundleImage("remi-face-dafult") ?? Image(systemName: "person.fill")
@@ -29,27 +29,46 @@ struct ContentView: View {
                     withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
                         breathScale = 1.03
                     }
+                    remi.prepareAudioSession()
                 }
 
-            if let line = remi.currentLine {
+            // partial STT text during recording
+            if let partial = remi.partialText {
+                Text(partial)
+                    .font(.system(size: 9))
+                    .foregroundColor(.white.opacity(0.7))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 6)
+                    .padding(.bottom, 85)
+            } else if let line = remi.currentLine {
                 Text(line)
                     .font(.system(size: 9))
                     .foregroundColor(.white.opacity(0.85))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 6)
-                    .padding(.bottom, 4)
+                    .padding(.bottom, 85)
             }
 
             Button(action: {
-                buttonLocked = true
-                remi.speak()
+                if remi.isRecording {
+                    remi.cancelRecording()
+                } else {
+                    remi.startRecording()
+                }
             }) {
                 ZStack {
                     Circle()
-                        .fill(Color.black.opacity(0.75))
+                        .fill(remi.isRecording
+                              ? Color.red.opacity(0.85)
+                              : Color.black.opacity(0.75))
+                        .scaleEffect(remi.isRecording ? recordPulse : 1.0)
                     if remi.isLoading {
                         ProgressView()
                             .tint(.white)
+                    } else if remi.isRecording {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundStyle(.white)
                     } else {
                         Image(systemName: remi.isPlaying ? "speaker.wave.2.fill" : "mic.fill")
                             .font(.system(size: 22, weight: .medium))
@@ -59,20 +78,22 @@ struct ContentView: View {
                 .frame(width: 56, height: 56)
             }
             .buttonStyle(.plain)
-            .disabled(buttonLocked || remi.isLoading || remi.isPlaying)
-            .onChange(of: remi.isLoading) { _, loading in
-                if !loading && !remi.isPlaying { buttonLocked = false }
-            }
-            .onChange(of: remi.isPlaying) { _, playing in
-                if !playing { buttonLocked = false }
+            .disabled(remi.isLoading || remi.isPlaying)
+            .onChange(of: remi.isRecording) { _, recording in
+                if recording {
+                    withAnimation(.easeInOut(duration: 0.6).repeatForever(autoreverses: true)) {
+                        recordPulse = 1.12
+                    }
+                } else {
+                    withAnimation(.default) { recordPulse = 1.0 }
+                }
             }
             .padding(.bottom, 23)
         }
         .onOpenURL { url in
             guard url.scheme == "watchvoiceapp" else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.buttonLocked = true
-                self.remi.speak()
+                self.remi.startRecording()
             }
         }
     }

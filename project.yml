@@ -32,6 +32,8 @@ targets:
     platform: watchOS
     sources:
       - path: WatchVoiceApp/Sources
+        excludes:
+          - Secrets.template.swift
       - path: WatchVoiceApp/Resources/layers
         buildPhase: resources
     dependencies:
@@ -44,6 +46,7 @@ targets:
         CFBundleDisplayName: VoiceApp
         WKApplication: true
         WKWatchOnly: true
+        NSMicrophoneUsageDescription: "レミと話すためにマイクを使います"
         NSAppTransportSecurity:
           NSAllowsArbitraryLoads: true
         CFBundleURLTypes:
