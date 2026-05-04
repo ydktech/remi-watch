@@ -36,6 +36,7 @@ targets:
           - Secrets.template.swift
       - path: WatchVoiceApp/Resources/layers
         buildPhase: resources
+      - path: WatchVoiceApp/Resources/Assets.xcassets
     dependencies:
       - target: WatchVoiceAppWidget
         embed: true

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		004BBF8B0A088CAB3A7315CF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */; };
 		07F7F50211A7014B8B4DA4D5 /* handwear.png in Resources */ = {isa = PBXBuildFile; fileRef = 297D32BB97991202B50C4982 /* handwear.png */; };
 		08022C82A5880BC53D0129DB /* remi-face.png in Resources */ = {isa = PBXBuildFile; fileRef = CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */; };
 		0FA60643C7D6369D03DA1E6E /* RemiWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851E585A367B9A959E23A39D /* RemiWidget.swift */; };
@@ -89,6 +90,7 @@
 		A92ABFD1798CBCC34632AD61 /* neck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neck.png; sourceTree = "<group>"; };
 		A9D02DEFB4C64AAE9F397231 /* legwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = legwear.png; sourceTree = "<group>"; };
 		B5C4B4CE2C1D0C000AC0C915 /* th_eye_closed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = th_eye_closed.png; sourceTree = "<group>"; };
+		B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCDA443580EC2556457EBA35 /* bottomwear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottomwear.png; sourceTree = "<group>"; };
 		CDECA2FBCE7FA85B69FA2F65 /* remi-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "remi-face.png"; sourceTree = "<group>"; };
 		DA30800A37C24B70AEF3CED8 /* eyelash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eyelash.png; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -150,6 +152,7 @@
 		E2E2377D2FD1BFCA3C53BBB4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B73F8DAF75B7BCA531459EC8 /* Assets.xcassets */,
 				E41EDD2EAB0D9C0FEDF93738 /* layers */,
 			);
 			path = Resources;
@@ -186,10 +189,10 @@
 			path = layers;
 			sourceTree = "<group>";
 		};
-		"TEMP_07995C5E-C994-438C-AC4D-8C71DF04601B" /* watch-front */ = {
+		"TEMP_9DF3569C-2FCB-496F-9736-9A47AED142F7" /* watch-front */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */,
+				"TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */,
 			);
 			path = "watch-front";
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				004BBF8B0A088CAB3A7315CF /* Assets.xcassets in Resources */,
 				CD3FF7DE667CE19D992A3A62 /* back_hair.png in Resources */,
 				A338A21F889E2AA2C49D9605 /* bottomwear.png in Resources */,
 				DB5E1569738398CD8AB1F7F7 /* ears.png in Resources */,
@@ -359,7 +363,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -457,7 +461,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_DF0656A2-1394-4299-A02D-02CC665EF7D3" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_258B130D-2435-4A38-8511-2BE0B2DCCF5B" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
