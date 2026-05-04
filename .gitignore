@@ -1,6 +1,7 @@
 # Secrets
 WatchVoiceApp/Sources/Secrets.swift
 .env
+signing.xcconfig
 
 # Xcode
 *.xcodeproj/xcuserdata/
