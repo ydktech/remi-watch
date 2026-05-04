@@ -10,53 +10,20 @@ private func loadCGImage(_ name: String) -> CGImage {
 struct ContentView: View {
     @StateObject private var remi = RemiManager()
     @State private var recordPulse: CGFloat = 1.0
-    @State private var eyeWeight: Double = 0.0
+    @State private var breathScale: CGFloat = 1.0
 
-    private let base      = Image(decorative: loadCGImage("th_base"),      scale: 1)
-    private let mouthOpen = Image(decorative: loadCGImage("th_mouth_open"), scale: 1)
-    private let eyeClosed = Image(decorative: loadCGImage("th_eye_closed"), scale: 1)
+    private let face = Image(decorative: loadCGImage("remi-face-dafult"), scale: 1)
 
     var body: some View {
         ZStack(alignment: .bottom) {
             Color.black.ignoresSafeArea()
 
-            TimelineView(.animation(minimumInterval: 1.0/15.0, paused: false)) { _ in
-                Canvas { ctx, size in
-                    let rect = CGRect(origin: .zero, size: size)
-                    ctx.draw(base, in: rect)
-                    if remi.mouthAmplitude > 0.02 {
-                        var c = ctx
-                        c.opacity = Double(min(1, remi.mouthAmplitude))
-                        c.draw(mouthOpen, in: rect)
-                    }
-                    if eyeWeight > 0.01 {
-                        var c = ctx
-                        c.opacity = eyeWeight
-                        c.draw(eyeClosed, in: rect)
-                    }
-                }
-            }
-            .ignoresSafeArea()
-            .onAppear {
-                remi.prepareAudioSession()
-                scheduleBlink()
-            }
-
-            if let partial = remi.partialText {
-                Text(partial)
-                    .font(.system(size: 9))
-                    .foregroundColor(.white.opacity(0.7))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 6)
-                    .padding(.bottom, 85)
-            } else if let line = remi.currentLine {
-                Text(line)
-                    .font(.system(size: 9))
-                    .foregroundColor(.white.opacity(0.85))
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 6)
-                    .padding(.bottom, 85)
-            }
+            face
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .scaleEffect(breathScale)
+                .ignoresSafeArea()
 
             Button(action: {
                 if remi.isRecording { remi.commitRecording() }
@@ -93,23 +60,18 @@ struct ContentView: View {
                     withAnimation(.default) { recordPulse = 1.0 }
                 }
             }
-            .padding(.bottom, 23)
+            .padding(.bottom, 6)
+        }
+        .onAppear {
+            remi.prepareAudioSession()
+            withAnimation(.easeInOut(duration: 2.5).repeatForever(autoreverses: true)) {
+                breathScale = 1.025
+            }
         }
         .onOpenURL { url in
             guard url.scheme == "watchvoiceapp" else { return }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                 self.remi.startRecording()
-            }
-        }
-    }
-
-    private func scheduleBlink() {
-        let delay = Double.random(in: 2.5...5.0)
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-            withAnimation(.linear(duration: 0.08)) { eyeWeight = 1.0 }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.13) {
-                withAnimation(.linear(duration: 0.08)) { eyeWeight = 0.0 }
-                scheduleBlink()
             }
         }
     }

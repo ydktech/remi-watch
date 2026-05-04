@@ -100,7 +100,7 @@
 		DEB58A345BF96CBB30DACEF4 /* WatchVoiceApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchVoiceApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF93582DF24D0CFFC38960DB /* ears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ears.png; sourceTree = "<group>"; };
 		FE7BC4760A7C2CCA5DD22A1A /* image-face-talk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "image-face-talk.png"; sourceTree = "<group>"; };
-		"TEMP_34A4BE9F-84CF-48CF-A8A6-4D3BA59805AF" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
+		"TEMP_EBB46878-687C-4237-9FBC-2CF86CDF1B98" /* signing.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = signing.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -208,10 +208,10 @@
 			path = state;
 			sourceTree = "<group>";
 		};
-		"TEMP_EC3DA3BE-18FB-4A76-AC5A-2D6726CAA0EB" /* watch-front */ = {
+		"TEMP_36ECD769-72D7-43AA-8258-9CDA3C25C3AE" /* watch-front */ = {
 			isa = PBXGroup;
 			children = (
-				"TEMP_34A4BE9F-84CF-48CF-A8A6-4D3BA59805AF" /* signing.xcconfig */,
+				"TEMP_EBB46878-687C-4237-9FBC-2CF86CDF1B98" /* signing.xcconfig */,
 			);
 			path = "watch-front";
 			sourceTree = "<group>";
@@ -383,7 +383,7 @@
 		};
 		79A7D8D5436B9F3CD6C30320 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_34A4BE9F-84CF-48CF-A8A6-4D3BA59805AF" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_EBB46878-687C-4237-9FBC-2CF86CDF1B98" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -481,7 +481,7 @@
 		};
 		C724CA27E9C5B492E2F390DD /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = "TEMP_34A4BE9F-84CF-48CF-A8A6-4D3BA59805AF" /* signing.xcconfig */;
+			baseConfigurationReference = "TEMP_EBB46878-687C-4237-9FBC-2CF86CDF1B98" /* signing.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

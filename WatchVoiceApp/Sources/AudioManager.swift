@@ -10,12 +10,9 @@ private final class CommitSignal: @unchecked Sendable {
 
 @MainActor
 class RemiManager: ObservableObject {
-    @Published var isRecording    = false
-    @Published var isLoading      = false
-    @Published var isPlaying      = false
-    @Published var partialText:   String?
-    @Published var currentLine:   String?
-    @Published var mouthAmplitude: Float = 0.0
+    @Published var isRecording = false
+    @Published var isLoading   = false
+    @Published var isPlaying   = false
 
     private let xaiKey      = Secrets.xaiKey
     private let fishApiKey  = Secrets.fishApiKey
@@ -58,14 +55,23 @@ class RemiManager: ObservableObject {
     // MARK: - Public interface
 
     func prepareAudioSession() {
-        Task { try? await activateAudioSession() }
+        Task {
+            try? await activateAudioSession()
+            await MainActor.run { self.warmupRecordEngine() }
+        }
+    }
+
+    @MainActor
+    private func warmupRecordEngine() {
+        let eng = AVAudioEngine()
+        _ = eng.inputNode.outputFormat(forBus: 0)
+        try? eng.start()
+        eng.stop()
     }
 
     func startRecording() {
         guard !isRecording, !isLoading, !isPlaying else { return }
         isRecording = true
-        partialText = "..."
-        currentLine = nil
 
         sttTask = Task(priority: .userInitiated) { [weak self] in
             guard let self else { return }
@@ -73,10 +79,7 @@ class RemiManager: ObservableObject {
                 let t0 = Date()
                 let transcript = try await self.runSTTSession()
                 let sttTime = Date().timeIntervalSince(t0)
-                await MainActor.run {
-                    self.isRecording = false
-                    self.partialText = nil
-                }
+                await MainActor.run { self.isRecording = false }
                 guard let text = transcript, !text.isEmpty else {
                     await MainActor.run { self.isLoading = false }
                     return
@@ -86,7 +89,6 @@ class RemiManager: ObservableObject {
                 let t1 = Date()
                 let remiText = try await self.fetchRemiLine(userInput: text)
                 print("⏱ LLM: \(String(format: "%.2f", Date().timeIntervalSince(t1)))s → \"\(remiText)\"")
-                await MainActor.run { self.currentLine = remiText }
                 let t2 = Date()
                 try await self.streamTTS(text: remiText)
                 print("⏱ TTS: \(String(format: "%.2f", Date().timeIntervalSince(t2)))s | total: \(String(format: "%.2f", Date().timeIntervalSince(t0)))s")
@@ -281,25 +283,6 @@ class RemiManager: ObservableObject {
         engine.connect(player, to: engine.mainMixerNode, format: format)
         try engine.start()
 
-        let tapFmt = engine.mainMixerNode.outputFormat(forBus: 0)
-        var lastTap = Date.distantPast
-        engine.mainMixerNode.installTap(onBus: 0, bufferSize: 1024, format: tapFmt) { [weak self] buf, _ in
-            guard let self else { return }
-            let now = Date()
-            guard now.timeIntervalSince(lastTap) >= 1.0/15.0 else { return }
-            lastTap = now
-            guard let ch = buf.floatChannelData else { return }
-            let n = Int(buf.frameLength)
-            var sum: Float = 0
-            for i in 0..<n { sum += ch[0][i] * ch[0][i] }
-            let rms = min(1.0, sqrt(sum / Float(max(n, 1))) * 8.0)
-            Task { @MainActor in
-                self.mouthAmplitude = rms > self.mouthAmplitude
-                    ? rms
-                    : self.mouthAmplitude * 0.7 + rms * 0.3
-            }
-        }
-
         await MainActor.run {
             self.audioEngine = engine
             self.playerNode  = player
@@ -375,15 +358,13 @@ class RemiManager: ObservableObject {
 
     @MainActor
     private func resetState() {
-        audioEngine?.mainMixerNode.removeTap(onBus: 0)
         audioEngine?.stop()
         audioEngine = nil
         playerNode?.stop()
         playerNode = nil
-        isRecording   = false
-        isLoading     = false
-        isPlaying     = false
-        mouthAmplitude = 0.0
+        isRecording = false
+        isLoading   = false
+        isPlaying   = false
     }
 
     // MARK: - LLM
