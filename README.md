@@ -6,6 +6,10 @@ A watchOS 10 voice companion app featuring Remi, a tsundere anime AI. Tap to tal
   <img src="docs/screenshot.png" width="200" alt="Remi on Apple Watch SE">
 </p>
 
+<p align="center">
+  <a href="https://github.com/ydktech/remi-watch/releases/download/v0.1/demo.mov">▶ Demo video</a>
+</p>
+
 ---
 
 ## ⚠️ API Keys Required
